@@ -1,0 +1,11 @@
+[data-css="container_page"] {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  width: 100%;
+  margin: 12.5vh 0;
+  padding: 0 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

@@ -1,0 +1,44 @@
+[data-component="Component_Modal_Pseudo"] {
+  position: fixed;
+  z-index: 4;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+[data-component="Component_Modal"] {
+  padding: 4px;
+  z-index: 5;
+  position: relative;
+  width: 650px;
+  height: fit-content;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--border-radius);
+}
+
+[data-component="Component_Modal_Header"],
+[data-component="Component_Modal_Content"] {
+  width: 100%;
+}
+
+[data-component="Component_Modal_Content"] {
+  padding: 20px;
+}
+
+[data-component="Component_Modal_Header"] {
+  display: flex;
+  flex-wrap: nowrap;
+  cursor: grab;
+  user-select: none;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bolder;
+  padding: 0 10px;
+}
+
+[data-component="Component_Modal_Header"] * {
+  margin: 0;
+}
