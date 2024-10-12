@@ -1,3 +1,14 @@
+interface Payload_Coordinate {
+  x: number;
+  y: number;
+}
+
+interface Payload_Trail {
+  coordinate: Payload_Coordinate;
+  id: string;
+  index: number;
+}
+
 interface Map_Modal {
   [key: string]: Payload_Modal;
 }

@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import jsonEqual from "../helper/jsonEqual";
 import "../assets/css/Hero.css";
+import generateUniqueHash from "../helper/generateUniqueHash";
 
 interface Props_Component_Hover {
   setHovered: (state: boolean) => void;
@@ -19,58 +20,94 @@ const Component_Hover = ({ setHovered, children }: Props_Component_Hover) => {
   );
 };
 
-interface Props_Component_Trail {
-  mouse_x: number;
-  mouse_y: number;
-  spawnImage: boolean;
-  images: Asset[]; // Array of image URLs
+interface Props_Component_Trail_Image {
+  x: number;
+  y: number;
+  url?: string;
+  onRemove: () => void;
 }
 
-const Component_Trail = ({
-  mouse_x,
-  mouse_y,
-  spawnImage,
-  images,
-}: Props_Component_Trail) => {
-  const [trail, setTrail] = useState<
-    { x: number; y: number; id: number; imgIndex: number }[]
-  >([]);
+const Component_Trail_Image = ({
+  x,
+  y,
+  url,
+  onRemove,
+}: Props_Component_Trail_Image) => {
+  useEffect(() => {
+    const timeout = setTimeout(onRemove, 2000);
+    return () => clearTimeout(timeout);
+  }, [onRemove]);
+
+  return (
+    <img
+      data-component="Component_Trail_Image"
+      src={url}
+      alt="trail"
+      style={{
+        left: x - 25,
+        top: y - 25,
+      }}
+    />
+  );
+};
+
+interface Props_Component_Trail {
+  hovered: boolean;
+  images: Asset[];
+}
+
+const Component_Trail = ({ hovered, images }: Props_Component_Trail) => {
+  const [trail, setTrail] = useState<Payload_Trail[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+  const [lastSpawnPos, setLastSpawnPos] = useState<Payload_Coordinate>({
+    x: 0,
+    y: 0,
+  });
 
   useEffect(() => {
-    if (spawnImage) {
-      const id = Date.now();
-      const imgIndex = currentImageIndex;
+    const handleMouseMove = ({ clientX, clientY }: MouseEvent) => {
+      if (hovered) {
+        const distance = Math.hypot(
+          clientX - lastSpawnPos.x,
+          clientY - lastSpawnPos.y
+        );
 
-      // Cycle through the images array
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+        if (distance >= 200) {
+          setTrail((prev) => [
+            ...prev,
+            {
+              coordinate: {
+                x: clientX,
+                y: clientY,
+              },
+              id: generateUniqueHash(),
+              index: currentImageIndex,
+            },
+          ]);
+          setCurrentImageIndex((prev) => (prev + 1) % images.length);
+          setLastSpawnPos({ x: clientX, y: clientY });
+        }
+      }
+    };
 
-      setTrail((prev) => [...prev, { x: mouse_x, y: mouse_y, id, imgIndex }]);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [hovered, lastSpawnPos, images.length, currentImageIndex]);
 
-      // Remove the image after 2 seconds
-      const timeout = setTimeout(() => {
-        setTrail((prev) => prev.filter((item) => item.id !== id));
-      }, 2000);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [spawnImage, mouse_x, mouse_y, currentImageIndex, images.length]);
+  const removeImage = (id: string) => {
+    console.log(trail);
+    setTrail((prev) => prev.filter((item) => item.id !== id));
+  };
 
   return (
     <>
-      {trail.map(({ x, y, id, imgIndex }) => (
-        <img
+      {trail.map(({ coordinate: { x, y }, id, index }) => (
+        <Component_Trail_Image
           key={id}
-          src={images[imgIndex].url} // Cycle through the array of images
-          alt="trail"
-          style={{
-            position: "absolute",
-            left: x - 25, // Adjust to center the image on the cursor
-            top: y - 25, // Adjust to center the image on the cursor
-            width: "50px",
-            height: "50px",
-            pointerEvents: "none", // So the image doesn’t interfere with mouse events
-          }}
+          x={x}
+          y={y}
+          url={images[index].url}
+          onRemove={() => removeImage(id)}
         />
       ))}
     </>
@@ -85,15 +122,6 @@ export const Component_Hero = ({
   const [lastResults, setLastResults] = useState<any>();
   const [assets, setAssets] = useState<Asset[]>([]);
   const [hovered, setHovered] = useState<boolean>(false);
-  const [mousePos, setMousePos] = useState<{ x: number; y: number }>({
-    x: 0,
-    y: 0,
-  });
-  const [lastSpawnPos, setLastSpawnPos] = useState<{ x: number; y: number }>({
-    x: 0,
-    y: 0,
-  });
-  const [spawnImage, setSpawnImage] = useState<boolean>(false);
 
   const parseAssetsResults = (result_assets: Payload_Result) =>
     setAssets(result_assets.data);
@@ -138,33 +166,6 @@ export const Component_Hero = ({
     gatherAssets();
   }, []);
 
-  // Mouse move handler to track mouse position and spawn images every 100px
-  useEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
-      const { clientX, clientY } = event;
-
-      console.log(hovered);
-
-      if (hovered) {
-        setMousePos({ x: clientX, y: clientY });
-
-        const distance = Math.sqrt(
-          Math.pow(clientX - lastSpawnPos.x, 2) +
-            Math.pow(clientY - lastSpawnPos.y, 2)
-        );
-
-        if (distance >= 100) {
-          setSpawnImage(true);
-          setLastSpawnPos({ x: clientX, y: clientY });
-        }
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [hovered, lastSpawnPos]);
-
   if (assets.length > 0)
     return (
       <div
@@ -182,12 +183,7 @@ export const Component_Hero = ({
         <Component_Hover setHovered={setHovered}>
           {data.json.content.unique.down}
         </Component_Hover>
-        <Component_Trail
-          mouse_x={mousePos.x}
-          mouse_y={mousePos.y}
-          spawnImage={spawnImage}
-          images={assets} // Pass the array of images as a prop
-        />
+        <Component_Trail hovered={hovered} images={assets} />
       </div>
     );
   return null;
