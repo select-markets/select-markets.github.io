@@ -61,7 +61,7 @@
               },
               "children": [
                 {
-                  "key_component": "text",
+                  "key_component": "header",
                   "enabled": true,
                   "loadable": true,
                   "content": {
@@ -69,7 +69,56 @@
                       "mount": ["function.common.subscribe"],
                       "unmount": ["function.common.unsubscribe"]
                     },
-                    "text": "Select Markets"
+                    "children": [
+                      {
+                        "key_component": "button",
+                        "enabled": true,
+                        "loadable": true,
+                        "content": {
+                          "functions": {
+                            "mount": ["function.common.subscribe"],
+                            "unmount": ["function.common.unsubscribe"]
+                          },
+                          "text": "vendor"
+                        }
+                      },
+                      {
+                        "key_component": "button",
+                        "enabled": true,
+                        "loadable": true,
+                        "content": {
+                          "functions": {
+                            "mount": ["function.common.subscribe"],
+                            "unmount": ["function.common.unsubscribe"]
+                          },
+                          "text": "faq"
+                        }
+                      },
+                      {
+                        "key_component": "button",
+                        "enabled": true,
+                        "loadable": true,
+                        "content": {
+                          "functions": {
+                            "mount": ["function.common.subscribe"],
+                            "unmount": ["function.common.unsubscribe"]
+                          },
+                          "text": "about"
+                        }
+                      },
+                      {
+                        "key_component": "button",
+                        "enabled": true,
+                        "loadable": true,
+                        "content": {
+                          "functions": {
+                            "mount": ["function.common.subscribe"],
+                            "unmount": ["function.common.unsubscribe"]
+                          },
+                          "text": "contact"
+                        }
+                      }
+                    ]
                   }
                 },
                 {
@@ -78,16 +127,15 @@
                   "loadable": true,
                   "content": {
                     "functions": {
-                      "mount": [
-                        "function.common.subscribe",
-                        "function.assets.subscribe"
-                      ],
-                      "unmount": [
-                        "function.common.unsubscribe",
-                        "function.assets.unsubscribe"
-                      ]
+                      "mount": ["function.common.subscribe"],
+                      "unmount": ["function.common.unsubscribe"]
                     },
-                    "assets": [{ "key_asset": "hero" }]
+                    "text": "hero blurb",
+                    "assets": [],
+                    "unique": {
+                      "up": "SELECT",
+                      "down": "MARKETS"
+                    }
                   }
                 }
               ]
@@ -98,6 +146,6 @@
     },
     "modals": [],
     "notices": [],
-    "assets": [{ "key_asset": "hero", "url": "assets/models/select.stl" }]
+    "assets": []
   }
 }
