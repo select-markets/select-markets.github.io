@@ -1,118 +1,8 @@
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import jsonEqual from "../helper/jsonEqual";
 import "../assets/css/Hero.css";
-import generateUniqueHash from "../helper/generateUniqueHash";
-
-interface Props_Component_Hover {
-  setHovered: (state: boolean) => void;
-  children: ReactNode;
-}
-
-const Component_Hover = ({ setHovered, children }: Props_Component_Hover) => {
-  return (
-    <div
-      data-component="Component_Hover"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {children}
-    </div>
-  );
-};
-
-interface Props_Component_Trail_Image {
-  x: number;
-  y: number;
-  url?: string;
-  onRemove: () => void;
-}
-
-const Component_Trail_Image = ({
-  x,
-  y,
-  url,
-  onRemove,
-}: Props_Component_Trail_Image) => {
-  useEffect(() => {
-    const timeout = setTimeout(onRemove, 2000);
-    return () => clearTimeout(timeout);
-  }, [onRemove]);
-
-  return (
-    <img
-      data-component="Component_Trail_Image"
-      src={url}
-      alt="trail"
-      style={{
-        left: x - 25,
-        top: y - 25,
-      }}
-    />
-  );
-};
-
-interface Props_Component_Trail {
-  hovered: boolean;
-  images: Asset[];
-}
-
-const Component_Trail = ({ hovered, images }: Props_Component_Trail) => {
-  const [trail, setTrail] = useState<Payload_Trail[]>([]);
-  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
-  const [lastSpawnPos, setLastSpawnPos] = useState<Payload_Coordinate>({
-    x: 0,
-    y: 0,
-  });
-
-  useEffect(() => {
-    const handleMouseMove = ({ clientX, clientY }: MouseEvent) => {
-      if (hovered) {
-        const distance = Math.hypot(
-          clientX - lastSpawnPos.x,
-          clientY - lastSpawnPos.y
-        );
-
-        if (distance >= 200) {
-          setTrail((prev) => [
-            ...prev,
-            {
-              coordinate: {
-                x: clientX,
-                y: clientY,
-              },
-              id: generateUniqueHash(),
-              index: currentImageIndex,
-            },
-          ]);
-          setCurrentImageIndex((prev) => (prev + 1) % images.length);
-          setLastSpawnPos({ x: clientX, y: clientY });
-        }
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [hovered, lastSpawnPos, images.length, currentImageIndex]);
-
-  const removeImage = (id: string) => {
-    console.log(trail);
-    setTrail((prev) => prev.filter((item) => item.id !== id));
-  };
-
-  return (
-    <>
-      {trail.map(({ coordinate: { x, y }, id, index }) => (
-        <Component_Trail_Image
-          key={id}
-          x={x}
-          y={y}
-          url={images[index].url}
-          onRemove={() => removeImage(id)}
-        />
-      ))}
-    </>
-  );
-};
+import { Utility_Hover } from "../utilities/Utility_Hover";
+import { Utility_Trail } from "../utilities/Utility_Trail";
 
 export const Component_Hero = ({
   data,
@@ -173,17 +63,17 @@ export const Component_Hero = ({
         data-css={data.json.content.key_css}
         data-key={data.key_call}
       >
-        <Component_Hover setHovered={setHovered}>
+        <Utility_Hover setHovered={setHovered}>
           <div
             style={{ backgroundColor: "pink", width: "200px", height: "200px" }}
           >
             {data.json.content.unique.up}
           </div>
-        </Component_Hover>
-        <Component_Hover setHovered={setHovered}>
+        </Utility_Hover>
+        <Utility_Hover setHovered={setHovered}>
           {data.json.content.unique.down}
-        </Component_Hover>
-        <Component_Trail hovered={hovered} images={assets} />
+        </Utility_Hover>
+        <Utility_Trail hovered={hovered} images={assets} />
       </div>
     );
   return null;
