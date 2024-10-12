@@ -17,6 +17,10 @@ export const Component_Button = ({
     if (!jsonEqual(results, lastResults)) parseResults();
   }, [results]);
 
+  useEffect(() => {
+    onFinishLoad();
+  }, []);
+
   return (
     <button
       data-component="Component_Button"

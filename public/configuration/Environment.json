@@ -127,11 +127,17 @@
                   "loadable": true,
                   "content": {
                     "functions": {
-                      "mount": ["function.common.subscribe"],
-                      "unmount": ["function.common.unsubscribe"]
+                      "mount": [
+                        "function.common.subscribe",
+                        "function.assets.subscribe"
+                      ],
+                      "unmount": [
+                        "function.common.unsubscribe",
+                        "function.assets.unsubscribe"
+                      ]
                     },
                     "text": "hero blurb",
-                    "assets": [],
+                    "assets": [{ "key_asset": "hero_img_1" }],
                     "unique": {
                       "up": "SELECT",
                       "down": "MARKETS"
@@ -146,6 +152,6 @@
     },
     "modals": [],
     "notices": [],
-    "assets": []
+    "assets": [{ "key_asset": "hero_img_1", "url": "assets/images/crowd.png " }]
   }
 }

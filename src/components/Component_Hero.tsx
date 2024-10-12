@@ -1,6 +1,23 @@
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import jsonEqual from "../helper/jsonEqual";
 import "../assets/css/Hero.css";
+
+interface Props_Component_Hover {
+  setHovered: (state: boolean) => void;
+  children: ReactNode;
+}
+
+const Component_Hover = ({ setHovered, children }: Props_Component_Hover) => {
+  return (
+    <div
+      data-component="Component_Hover"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {children}
+    </div>
+  );
+};
 
 export const Component_Hero = ({
   data,
@@ -9,6 +26,7 @@ export const Component_Hero = ({
 }: Props_Component_Rendered) => {
   const [lastResults, setLastResults] = useState<any>();
   const [assets, setAssets] = useState<Asset[]>([]);
+  const [hovered, setHovered] = useState<boolean>();
 
   const parseAssetsResults = (result_assets: Payload_Result) =>
     setAssets(result_assets.data);
@@ -53,13 +71,28 @@ export const Component_Hero = ({
     gatherAssets();
   }, []);
 
+  useEffect(() => {
+    console.log(hovered ? "hi" : "bye");
+  }, [hovered]);
+
   if (assets.length > 0)
     return (
       <div
         data-component="Component_Hero"
         data-css={data.json.content.key_css}
         data-key={data.key_call}
-      ></div>
+      >
+        <Component_Hover setHovered={setHovered}>
+          <div
+            style={{ backgroundColor: "pink", width: "200px", height: "200px" }}
+          >
+            {data.json.content.unique.up}
+          </div>
+        </Component_Hover>
+        <Component_Hover setHovered={setHovered}>
+          {data.json.content.unique.down}
+        </Component_Hover>
+      </div>
     );
   return null;
 };
