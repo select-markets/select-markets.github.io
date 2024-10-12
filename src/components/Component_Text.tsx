@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Component_Display_HTML } from "./Component_Display_HTML";
 import jsonEqual from "../helper/jsonEqual";
+import "../assets/css/Text.css";
 
 export const Component_Text = ({
   data,

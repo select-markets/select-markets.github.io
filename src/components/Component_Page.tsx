@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppNavigate } from "./Component_App_Router";
 import Component_Generic from "./Component_Generic";
+import "../assets/css/Page.css";
 
 export const Component_Page = ({
   data,

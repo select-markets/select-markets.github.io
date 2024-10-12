@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Component_Display_HTML } from "./Component_Display_HTML";
 import jsonEqual from "../helper/jsonEqual";
+import "../assets/css/Modal.css";
 
 const Component_Modal: React.FC<Props_Component_Modal> = ({
   payload_modal,

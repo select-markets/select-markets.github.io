@@ -1,3 +1,5 @@
+import "../assets/css/Display_HTML.css";
+
 interface Props_Component_Display_HTML {
   html?: string; // Optional markdown string to be rendered.
 }
