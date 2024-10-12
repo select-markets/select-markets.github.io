@@ -1,0 +1,120 @@
+:root {
+  --blue-color: #457b98;
+  --light-blue-color: #7f9bcd;
+  --white-color: white;
+  --grey-color: #f0f0f0;
+  --dark-grey-color: #4d4d4d;
+  --black: #000;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --dark-shadow: rgba(0, 0, 0, 0.5);
+  --silver-color: #c0c0c0;
+  --red-color: #d24343;
+}
+
+* {
+  scrollbar-color: var(--blue-color) var(--white);
+}
+
+[data-component="Component_Header"],
+[data-component="Component_Footer"],
+[data-component="Component_Button_Image"],
+[data-component="Component_Button_Image_Hover"] {
+  background-color: var(--white-color);
+}
+
+[data-component="Component_Button_Image_Hover"]:hover,
+[data-component="Component_Button_Image_Hover"].toggled,
+[data-component="Component_Modal_Header"] {
+  background-color: var(--blue-color);
+}
+
+[data-component="Component_Horizontal_Divider"] {
+  border: 1px solid var(--red-color);
+}
+
+[data-component="Component_Search_Bar_Input"] {
+  border: 1px solid var(--blue-color);
+}
+
+[data-component="Component_Hamburger_Menu_Button"] {
+  color: var(--blue-color);
+}
+
+[data-component="Component_Search_Card"] {
+  background-color: var(--white-color);
+  box-shadow: 0 0 10px var(--dark-shadow);
+}
+
+[data-component="Component_Search_Card_Container"]:hover
+  [data-component="Component_Search_Card"] {
+  filter: drop-shadow(0 2px 4px var(--red-color));
+}
+
+[data-component="Component_Search_Card"] {
+  filter: drop-shadow(0 2px 4px var(--shadow));
+}
+
+[data-component="Component_Modal"] {
+  background-color: var(--white-color);
+  filter: drop-shadow(0 0 4px var(--dark-shadow));
+}
+
+[data-component="Component_Modal_Header"] * {
+  color: var(--white-color);
+}
+
+[data-component="Component_Login_Container"] {
+  background-color: var(--white-color);
+  filter: drop-shadow(0 2px 4px var(--shadow));
+  color: var(--black);
+}
+
+[data-component="Component_Login_Username_Container"] input,
+[data-component="Component_Login_Password_Container"] input,
+[data-component="Component_Login_Button"] {
+  box-shadow: 0px 0px 2px var(--black);
+}
+
+[data-component="Component_Login_Button"]:hover {
+  background-color: var(--black);
+  color: var(--white-color);
+}
+
+[data-component="Component_Hamburger_Menu_Container"] {
+  background-color: var(--white-color);
+  box-shadow: 0px 0px 4px var(--dark-shadow);
+}
+
+[data-component="Component_Preferences_Edit_Button"] {
+  background-color: var(--blue-color);
+  color: var(--white-color);
+  border: transparent 2px solid;
+}
+
+[data-component="Component_Preferences_Edit_Button"]:hover {
+  color: var(--blue-color);
+  background-color: var(--white-color);
+  font-weight: bold;
+  border: var(--blue-color) 2px solid;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--white-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--blue-color);
+}
+
+[data-component="Component_Hamburger_Menu_Container"] button:hover {
+  background-color: var(--blue-color);
+}
+
+[data-component="Component_Hamburger_Menu_Container"] button:hover * {
+  color: var(--white-color) !important;
+}
