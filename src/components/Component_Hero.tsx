@@ -3,8 +3,8 @@ import jsonEqual from "../helper/jsonEqual";
 import "../assets/css/Hero.css";
 import Component_Generic from "./Component_Generic";
 import { Utility_Hover } from "../utilities/Utility_Hover";
-import { shuffleArray } from "../helper/shuffleArray";
 import { Utility_Transformed_Text } from "../utilities/Utility_Transfored_Text";
+import { shuffleArray } from "../helper/shuffleArray";
 
 export const Component_Hero = ({
   data,
@@ -66,12 +66,14 @@ export const Component_Hero = ({
         data-key={data.key_call}
         className={`${hovered && "hovered"}`}
       >
-        <Utility_Hover setHovered={setHovered} className="title_container">
+        <Utility_Hover
+          setHovered={setHovered}
+          className={`title_container ${hovered && "hovered"}`}
+        >
           <div className={`title_up ${hovered && "hovered"}`}>
             <Utility_Transformed_Text
               text={data.json.content.text}
               hovered={hovered}
-              assets={assets}
             />
           </div>
           <div className={`title_down ${hovered && "hovered"}`}>
@@ -79,7 +81,6 @@ export const Component_Hero = ({
               text={data.json.content.text}
               hovered={hovered}
               invert={true}
-              assets={assets}
             />
           </div>
         </Utility_Hover>

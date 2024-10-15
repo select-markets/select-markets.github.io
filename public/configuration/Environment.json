@@ -168,7 +168,7 @@
                             "mount": ["function.common.subscribe"],
                             "unmount": ["function.common.unsubscribe"]
                           },
-                          "text": "blurb blurb blurb blurb"
+                          "text": "Vintage Finds for Modern Minds"
                         }
                       }
                     ]

@@ -4,12 +4,11 @@ interface Props_Utility_Transformed_Text {
   text: string;
   hovered: boolean;
   invert?: boolean;
-  assets: Asset[];
 }
 
 export const Utility_Transformed_Text: React.FC<
   Props_Utility_Transformed_Text
-> = ({ text, hovered, invert = false, assets }) => {
+> = ({ text, hovered, invert = false }) => {
   const length = text.length;
 
   return text.split("").map((char, index) => {
@@ -18,7 +17,14 @@ export const Utility_Transformed_Text: React.FC<
     if (hovered) {
       const middle = length / 2;
       const a = invert ? -0.05 : 0.05;
-      const translateY = a * Math.pow(index - middle, 2) * 10;
+      // Calculate the distance from the middle
+      const distanceFromMiddle = Math.abs(index - middle);
+
+      // Scale the multiplier inversely proportional to the distance from the middle
+      const scalingFactor = 1 / (distanceFromMiddle + 1); // +1 to avoid division by zero
+
+      // Translation now scales more as it gets closer to the middle
+      const translateY = a * Math.pow(index - middle, 2) * 50 * scalingFactor;
 
       const rotate =
         index < middle
@@ -34,19 +40,11 @@ export const Utility_Transformed_Text: React.FC<
       }
     }
 
-    const assetIndex = index % assets.length;
-    const backgroundImage = `url(${assets[assetIndex].url}) no-repeat center`;
-
     return (
       <h1
         key={index}
         style={{
           transform,
-          background: backgroundImage,
-          backgroundSize: "cover",
-          WebkitBackgroundClip: "text",
-          color: "transparent",
-          transition: "transform 0.3s ease-in-out",
         }}
       >
         {char}
