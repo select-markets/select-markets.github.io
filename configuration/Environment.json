@@ -1,0 +1,284 @@
+{
+  "api": {
+    "license": "configuration/api_license.json",
+    "retries": 1
+  },
+  "subscriber_content": {
+    "themes": [],
+    "app": {
+      "key_component": "app_router",
+      "enabled": true,
+      "content": {
+        "functions": {
+          "mount": ["function.environment.subscribe"],
+          "unmount": ["function.environment.unsubscribe"]
+        },
+        "children": [
+          {
+            "key_component": "loader",
+            "enabled": true,
+            "loadable": true,
+            "content": {
+              "functions": {
+                "mount": ["function.loader.subscribe"],
+                "unmount": ["function.loader.unsubscribe"],
+                "lifecycle": []
+              }
+            }
+          },
+          {
+            "key_component": "modal_pseudo",
+            "enabled": true,
+            "loadable": true,
+            "content": {
+              "functions": {
+                "mount": [
+                  "function.common.subscribe",
+                  "function.modal.subscribe"
+                ],
+                "unmount": [
+                  "function.common.unsubscribe",
+                  "function.modal.unsubscribe"
+                ]
+              }
+            }
+          },
+          {
+            "key_component": "page",
+            "enabled": true,
+            "loadable": false,
+            "content": {
+              "key_page": "Home",
+              "functions": {
+                "mount": [
+                  "function.common.subscribe",
+                  "function.navigation.page.subscribe"
+                ],
+                "unmount": [
+                  "function.common.unsubscribe",
+                  "function.navigation.page.unsubscribe"
+                ]
+              },
+              "children": [
+                {
+                  "key_component": "header",
+                  "enabled": true,
+                  "loadable": true,
+                  "content": {
+                    "functions": {
+                      "mount": ["function.common.subscribe"],
+                      "unmount": ["function.common.unsubscribe"]
+                    },
+                    "children": [
+                      {
+                        "key_component": "button",
+                        "enabled": true,
+                        "loadable": true,
+                        "content": {
+                          "key_css": "button_vendor",
+                          "functions": {
+                            "mount": ["function.common.subscribe"],
+                            "unmount": ["function.common.unsubscribe"],
+                            "lifecycle": [
+                              "function.navigation.page.publish_vendor"
+                            ]
+                          },
+                          "text": "VENDOR"
+                        }
+                      },
+                      {
+                        "key_component": "button",
+                        "enabled": true,
+                        "loadable": true,
+                        "content": {
+                          "key_css": "button_faq",
+                          "functions": {
+                            "mount": ["function.common.subscribe"],
+                            "unmount": ["function.common.unsubscribe"],
+                            "lifecycle": [
+                              "function.navigation.page.publish_faq"
+                            ]
+                          },
+                          "text": "FAQ"
+                        }
+                      },
+                      {
+                        "key_component": "button_logo",
+                        "enabled": true,
+                        "loadable": true,
+                        "content": {
+                          "key_css": "button_logo",
+                          "functions": {
+                            "mount": ["function.common.subscribe"],
+                            "unmount": ["function.common.unsubscribe"],
+                            "lifecycle": [
+                              "function.navigation.page.publish_home"
+                            ]
+                          },
+                          "text": "SELECT",
+                          "children": [
+                            {
+                              "key_component": "text",
+                              "enabled": true,
+                              "loadable": true,
+                              "content": {
+                                "functions": {
+                                  "mount": ["function.common.subscribe"],
+                                  "unmount": ["function.common.unsubscribe"]
+                                },
+                                "text": "Vintage Finds for Modern Minds"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "key_component": "button",
+                        "enabled": true,
+                        "loadable": true,
+                        "content": {
+                          "key_css": "button_about",
+                          "functions": {
+                            "mount": ["function.common.subscribe"],
+                            "unmount": ["function.common.unsubscribe"],
+                            "lifecycle": [
+                              "function.navigation.page.publish_about"
+                            ]
+                          },
+                          "text": "ABOUT"
+                        }
+                      },
+                      {
+                        "key_component": "button",
+                        "enabled": true,
+                        "loadable": true,
+                        "content": {
+                          "key_css": "button_contact",
+                          "functions": {
+                            "mount": ["function.common.subscribe"],
+                            "unmount": ["function.common.unsubscribe"],
+                            "lifecycle": [
+                              "function.navigation.page.publish_contact"
+                            ]
+                          },
+                          "text": "CONTACT"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "key_component": "hero",
+                  "enabled": true,
+                  "loadable": true,
+                  "content": {
+                    "functions": {
+                      "mount": [
+                        "function.common.subscribe",
+                        "function.assets.subscribe"
+                      ],
+                      "unmount": [
+                        "function.common.unsubscribe",
+                        "function.assets.unsubscribe"
+                      ]
+                    },
+                    "assets": [{ "key_asset": "globe" }],
+                    "text": "Vintage Finds for Modern Minds"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "key_component": "page",
+            "enabled": true,
+            "loadable": false,
+            "content": {
+              "key_page": "About",
+              "functions": {
+                "mount": [
+                  "function.common.subscribe",
+                  "function.navigation.page.subscribe"
+                ],
+                "unmount": [
+                  "function.common.unsubscribe",
+                  "function.navigation.page.unsubscribe"
+                ]
+              },
+              "children": []
+            }
+          },
+          {
+            "key_component": "page",
+            "enabled": true,
+            "loadable": false,
+            "content": {
+              "key_page": "About",
+              "functions": {
+                "mount": [
+                  "function.common.subscribe",
+                  "function.navigation.page.subscribe"
+                ],
+                "unmount": [
+                  "function.common.unsubscribe",
+                  "function.navigation.page.unsubscribe"
+                ]
+              },
+              "children": []
+            }
+          },
+          {
+            "key_component": "page",
+            "enabled": true,
+            "loadable": false,
+            "content": {
+              "key_page": "FAQ",
+              "functions": {
+                "mount": [
+                  "function.common.subscribe",
+                  "function.navigation.page.subscribe"
+                ],
+                "unmount": [
+                  "function.common.unsubscribe",
+                  "function.navigation.page.unsubscribe"
+                ]
+              },
+              "children": []
+            }
+          },
+          {
+            "key_component": "page",
+            "enabled": true,
+            "loadable": false,
+            "content": {
+              "key_page": "Vendor",
+              "functions": {
+                "mount": [
+                  "function.common.subscribe",
+                  "function.navigation.page.subscribe"
+                ],
+                "unmount": [
+                  "function.common.unsubscribe",
+                  "function.navigation.page.unsubscribe"
+                ]
+              },
+              "children": []
+            }
+          }
+        ]
+      }
+    },
+    "modals": [],
+    "notices": [],
+    "assets": [
+      { "key_asset": "globe", "url": "assets/models/planet_earth.glb" },
+      { "key_asset": "hero_img_0", "url": "assets/images/select-0.png" },
+      { "key_asset": "hero_img_1", "url": "assets/images/select-1.jpg" },
+      { "key_asset": "hero_img_2", "url": "assets/images/select-2.jpg" },
+      { "key_asset": "hero_img_3", "url": "assets/images/select-3.jpg" },
+      { "key_asset": "hero_img_4", "url": "assets/images/select-4.webp" },
+      { "key_asset": "hero_img_5", "url": "assets/images/select-5.jpg" },
+      { "key_asset": "hero_img_6", "url": "assets/images/select-6.jpg" }
+    ]
+  }
+}
