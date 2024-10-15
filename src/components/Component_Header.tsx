@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Component_Generic from "./Component_Generic";
 import jsonEqual from "../helper/jsonEqual";
+import "../assets/css/Header.css";
 
 export const Component_Header = ({
   data,
@@ -38,6 +39,3 @@ export const Component_Header = ({
     </div>
   );
 };
-function setLastResults(results: Map_Results) {
-  throw new Error("Function not implemented.");
-}

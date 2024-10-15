@@ -75,6 +75,7 @@
                         "enabled": true,
                         "loadable": true,
                         "content": {
+                          "key_css": "button_vendor",
                           "functions": {
                             "mount": ["function.common.subscribe"],
                             "unmount": ["function.common.unsubscribe"],
@@ -82,7 +83,7 @@
                               "function.navigation.page.publish_vendor"
                             ]
                           },
-                          "text": "vendor"
+                          "text": "VENDOR"
                         }
                       },
                       {
@@ -90,6 +91,7 @@
                         "enabled": true,
                         "loadable": true,
                         "content": {
+                          "key_css": "button_faq",
                           "functions": {
                             "mount": ["function.common.subscribe"],
                             "unmount": ["function.common.unsubscribe"],
@@ -97,7 +99,37 @@
                               "function.navigation.page.publish_faq"
                             ]
                           },
-                          "text": "faq"
+                          "text": "FAQ"
+                        }
+                      },
+                      {
+                        "key_component": "button_logo",
+                        "enabled": true,
+                        "loadable": true,
+                        "content": {
+                          "key_css": "button_logo",
+                          "functions": {
+                            "mount": ["function.common.subscribe"],
+                            "unmount": ["function.common.unsubscribe"],
+                            "lifecycle": [
+                              "function.navigation.page.publish_home"
+                            ]
+                          },
+                          "text": "SELECT",
+                          "children": [
+                            {
+                              "key_component": "text",
+                              "enabled": true,
+                              "loadable": true,
+                              "content": {
+                                "functions": {
+                                  "mount": ["function.common.subscribe"],
+                                  "unmount": ["function.common.unsubscribe"]
+                                },
+                                "text": "Vintage Finds for Modern Minds"
+                              }
+                            }
+                          ]
                         }
                       },
                       {
@@ -105,6 +137,7 @@
                         "enabled": true,
                         "loadable": true,
                         "content": {
+                          "key_css": "button_about",
                           "functions": {
                             "mount": ["function.common.subscribe"],
                             "unmount": ["function.common.unsubscribe"],
@@ -112,7 +145,7 @@
                               "function.navigation.page.publish_about"
                             ]
                           },
-                          "text": "about"
+                          "text": "ABOUT"
                         }
                       },
                       {
@@ -120,6 +153,7 @@
                         "enabled": true,
                         "loadable": true,
                         "content": {
+                          "key_css": "button_contact",
                           "functions": {
                             "mount": ["function.common.subscribe"],
                             "unmount": ["function.common.unsubscribe"],
@@ -127,7 +161,7 @@
                               "function.navigation.page.publish_contact"
                             ]
                           },
-                          "text": "contact"
+                          "text": "CONTACT"
                         }
                       }
                     ]
@@ -139,39 +173,10 @@
                   "loadable": true,
                   "content": {
                     "functions": {
-                      "mount": [
-                        "function.common.subscribe",
-                        "function.assets.subscribe"
-                      ],
-                      "unmount": [
-                        "function.common.unsubscribe",
-                        "function.assets.unsubscribe"
-                      ]
+                      "mount": ["function.common.subscribe"],
+                      "unmount": ["function.common.unsubscribe"]
                     },
-                    "text": "SELECT",
-                    "assets": [
-                      { "key_asset": "hero_img_0" },
-                      { "key_asset": "hero_img_1" },
-                      { "key_asset": "hero_img_2" },
-                      { "key_asset": "hero_img_3" },
-                      { "key_asset": "hero_img_4" },
-                      { "key_asset": "hero_img_5" },
-                      { "key_asset": "hero_img_6" }
-                    ],
-                    "children": [
-                      {
-                        "key_component": "text",
-                        "enabled": true,
-                        "loadable": true,
-                        "content": {
-                          "functions": {
-                            "mount": ["function.common.subscribe"],
-                            "unmount": ["function.common.unsubscribe"]
-                          },
-                          "text": "Vintage Finds for Modern Minds"
-                        }
-                      }
-                    ]
+                    "text": "Vintage Finds for Modern Minds"
                   }
                 }
               ]

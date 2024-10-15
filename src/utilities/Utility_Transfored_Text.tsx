@@ -15,8 +15,11 @@ export const Utility_Transformed_Text: React.FC<
     let transform = "";
 
     if (hovered) {
-      const middle = length / 2;
+      // Check if the text length is even or odd
+      const isEven = length % 2 === 0;
+      const middle = isEven ? length / 2 - 0.5 : Math.floor(length / 2);
       const a = invert ? -0.05 : 0.05;
+
       // Calculate the distance from the middle
       const distanceFromMiddle = Math.abs(index - middle);
 
@@ -24,7 +27,7 @@ export const Utility_Transformed_Text: React.FC<
       const scalingFactor = 1 / (distanceFromMiddle + 1); // +1 to avoid division by zero
 
       // Translation now scales more as it gets closer to the middle
-      const translateY = a * Math.pow(index - middle, 2) * 50 * scalingFactor;
+      const translateY = a * Math.pow(index - middle, 2) * 20 * scalingFactor;
 
       const rotate =
         index < middle
@@ -37,6 +40,14 @@ export const Utility_Transformed_Text: React.FC<
 
       if (translateY !== 0 || rotate !== 0) {
         transform = `translateY(${translateY}vh) rotate(${rotate}deg)`;
+      }
+
+      // Ensure the two middle characters have the same transform
+      if (
+        isEven &&
+        (index === Math.floor(middle) || index === Math.ceil(middle))
+      ) {
+        transform = `translateY(${translateY}vh) rotate(${invert ? -5 : 5}deg)`;
       }
     }
 

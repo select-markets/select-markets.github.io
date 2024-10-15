@@ -17,8 +17,9 @@ import { Component_Page } from "./Component_Page";
 import { Component_App_Router } from "./Component_App_Router";
 import { Component_Modal_Pseudo } from "./Component_Modal_Pseudo";
 import { Component_Loader } from "./Component_Loader";
-import { Component_Hero } from "./Component_Hero";
 import { Component_Header } from "./Component_Header";
+import { Component_Button_Logo } from "./Component_Button_Logo";
+import { Component_Hero } from "./Component_Hero";
 
 const Component_Map: Record<
   string,
@@ -27,6 +28,7 @@ const Component_Map: Record<
   app_router: Component_App_Router, // background component for navigation
   banner: Component_Banner, // like a container with a background color
   button: Component_Button, // button that can render html inside of it
+  button_logo: Component_Button_Logo,
   container: Component_Container, // generic container that can be manipulated via css that can hold other components
   header: Component_Header,
   hero: Component_Hero,
