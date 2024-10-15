@@ -3,6 +3,8 @@ import jsonEqual from "../helper/jsonEqual";
 import "../assets/css/Hero.css";
 import Component_Generic from "./Component_Generic";
 import { Utility_Hover } from "../utilities/Utility_Hover";
+import { shuffleArray } from "../helper/shuffleArray";
+import { Utility_Transformed_Text } from "../utilities/Utility_Transfored_Text";
 
 export const Component_Hero = ({
   data,
@@ -56,55 +58,6 @@ export const Component_Hero = ({
     gatherAssets();
   }, []);
 
-  const renderTransformedText = (text: string, invert = false) => {
-    const length = text.length;
-
-    return text.split("").map((char, index) => {
-      let transform = "";
-
-      if (hovered) {
-        const middle = length / 2; // Horizontal center of the text
-        const a = invert ? -0.05 : 0.05; // Controls steepness, negative when inverted
-        const translateY = a * Math.pow(index - middle, 2) * 10; // Parabolic function
-
-        // Determine rotation, making each character point toward the middle
-        const rotate =
-          index < middle
-            ? invert
-              ? 5 * (middle - index)
-              : -5 * (middle - index) // Left side: rotate towards the center
-            : invert
-            ? -5 * (index - middle)
-            : 5 * (index - middle); // Right side: rotate towards the center
-
-        // Apply transform if translation or rotation is not zero
-        if (translateY !== 0 || rotate !== 0) {
-          transform = `translateY(${translateY}vh) rotate(${rotate}deg)`;
-        }
-      }
-
-      // Cycle through assets for background images
-      const assetIndex = index % assets.length;
-      const backgroundImage = `url(${assets[assetIndex].url}) no-repeat center`;
-
-      return (
-        <h1
-          key={index}
-          style={{
-            transform,
-            background: backgroundImage,
-            backgroundSize: "cover", // Ensure image covers text
-            WebkitBackgroundClip: "text",
-            color: "transparent", // Make text transparent to show background image
-            transition: "transform 0.3s ease-in-out", // Smooth transitions
-          }}
-        >
-          {char}
-        </h1>
-      );
-    });
-  };
-
   if (assets.length > 0 && data.json.content.text)
     return (
       <div
@@ -115,10 +68,19 @@ export const Component_Hero = ({
       >
         <Utility_Hover setHovered={setHovered} className="title_container">
           <div className={`title_up ${hovered && "hovered"}`}>
-            {renderTransformedText(data.json.content.text)}
+            <Utility_Transformed_Text
+              text={data.json.content.text}
+              hovered={hovered}
+              assets={assets}
+            />
           </div>
           <div className={`title_down ${hovered && "hovered"}`}>
-            {renderTransformedText(data.json.content.text, true)}
+            <Utility_Transformed_Text
+              text={data.json.content.text}
+              hovered={hovered}
+              invert={true}
+              assets={assets}
+            />
           </div>
         </Utility_Hover>
         <div className="content_container">
