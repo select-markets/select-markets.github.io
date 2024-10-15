@@ -58,7 +58,7 @@
 
   -webkit-background-clip: text;
   color: transparent;
-  animation: shimmer 4s infinite ease-in-out;
+  animation: shimmer 10s infinite ease-in-out;
 }
 
 @keyframes shimmer {
