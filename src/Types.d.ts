@@ -73,7 +73,6 @@ interface Data_Component_Generic {
     children?: Data_Component_Generic[];
     text?: string;
     assets?: Asset[];
-    unique: any;
   };
 }
 

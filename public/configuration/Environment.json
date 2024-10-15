@@ -136,12 +136,22 @@
                         "function.assets.unsubscribe"
                       ]
                     },
-                    "text": "hero blurb",
+                    "text": "SELECT",
                     "assets": [{ "key_asset": "hero_img_1" }],
-                    "unique": {
-                      "up": "SELECT",
-                      "down": "MARKETS"
-                    }
+                    "children": [
+                      {
+                        "key_component": "text",
+                        "enabled": true,
+                        "loadable": true,
+                        "content": {
+                          "functions": {
+                            "mount": ["function.common.subscribe"],
+                            "unmount": ["function.common.unsubscribe"]
+                          },
+                          "text": "blurb blurb blurb blurb"
+                        }
+                      }
+                    ]
                   }
                 }
               ]

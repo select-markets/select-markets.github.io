@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import jsonEqual from "../helper/jsonEqual";
 import "../assets/css/Hero.css";
+import Component_Generic from "./Component_Generic";
 import { Utility_Hover } from "../utilities/Utility_Hover";
-import { Utility_Trail } from "../utilities/Utility_Trail";
 
 export const Component_Hero = ({
   data,
@@ -62,18 +62,24 @@ export const Component_Hero = ({
         data-component="Component_Hero"
         data-css={data.json.content.key_css}
         data-key={data.key_call}
+        className={`${hovered && "hovered"}`}
       >
-        <Utility_Hover setHovered={setHovered}>
-          <div
-            style={{ backgroundColor: "pink", width: "200px", height: "200px" }}
-          >
-            {data.json.content.unique.up}
+        <Utility_Hover setHovered={setHovered} className="title_container">
+          <div className={`title_up ${hovered && "hovered"}`}>
+            <h1>{data.json.content.text}</h1>
+          </div>
+          <div className={`title_down ${hovered && "hovered"}`}>
+            <h1>{data.json.content.text}</h1>
           </div>
         </Utility_Hover>
-        <Utility_Hover setHovered={setHovered}>
-          {data.json.content.unique.down}
-        </Utility_Hover>
-        <Utility_Trail hovered={hovered} images={assets} />
+        <div className="content_container">
+          {data.json.content.children &&
+            data.json.content.children.map(
+              (component_data: Data_Component_Generic, index: number) => (
+                <Component_Generic data={component_data} key={index} />
+              )
+            )}
+        </div>
       </div>
     );
   return null;
