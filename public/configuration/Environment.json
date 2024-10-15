@@ -77,7 +77,10 @@
                         "content": {
                           "functions": {
                             "mount": ["function.common.subscribe"],
-                            "unmount": ["function.common.unsubscribe"]
+                            "unmount": ["function.common.unsubscribe"],
+                            "lifecycle": [
+                              "function.navigation.page.publish_vendor"
+                            ]
                           },
                           "text": "vendor"
                         }
@@ -89,7 +92,10 @@
                         "content": {
                           "functions": {
                             "mount": ["function.common.subscribe"],
-                            "unmount": ["function.common.unsubscribe"]
+                            "unmount": ["function.common.unsubscribe"],
+                            "lifecycle": [
+                              "function.navigation.page.publish_faq"
+                            ]
                           },
                           "text": "faq"
                         }
@@ -101,7 +107,10 @@
                         "content": {
                           "functions": {
                             "mount": ["function.common.subscribe"],
-                            "unmount": ["function.common.unsubscribe"]
+                            "unmount": ["function.common.unsubscribe"],
+                            "lifecycle": [
+                              "function.navigation.page.publish_about"
+                            ]
                           },
                           "text": "about"
                         }
@@ -113,7 +122,10 @@
                         "content": {
                           "functions": {
                             "mount": ["function.common.subscribe"],
-                            "unmount": ["function.common.unsubscribe"]
+                            "unmount": ["function.common.unsubscribe"],
+                            "lifecycle": [
+                              "function.navigation.page.publish_contact"
+                            ]
                           },
                           "text": "contact"
                         }
@@ -155,6 +167,82 @@
                   }
                 }
               ]
+            }
+          },
+          {
+            "key_component": "page",
+            "enabled": true,
+            "loadable": false,
+            "content": {
+              "key_page": "About",
+              "functions": {
+                "mount": [
+                  "function.common.subscribe",
+                  "function.navigation.page.subscribe"
+                ],
+                "unmount": [
+                  "function.common.unsubscribe",
+                  "function.navigation.page.unsubscribe"
+                ]
+              },
+              "children": []
+            }
+          },
+          {
+            "key_component": "page",
+            "enabled": true,
+            "loadable": false,
+            "content": {
+              "key_page": "About",
+              "functions": {
+                "mount": [
+                  "function.common.subscribe",
+                  "function.navigation.page.subscribe"
+                ],
+                "unmount": [
+                  "function.common.unsubscribe",
+                  "function.navigation.page.unsubscribe"
+                ]
+              },
+              "children": []
+            }
+          },
+          {
+            "key_component": "page",
+            "enabled": true,
+            "loadable": false,
+            "content": {
+              "key_page": "FAQ",
+              "functions": {
+                "mount": [
+                  "function.common.subscribe",
+                  "function.navigation.page.subscribe"
+                ],
+                "unmount": [
+                  "function.common.unsubscribe",
+                  "function.navigation.page.unsubscribe"
+                ]
+              },
+              "children": []
+            }
+          },
+          {
+            "key_component": "page",
+            "enabled": true,
+            "loadable": false,
+            "content": {
+              "key_page": "Vendor",
+              "functions": {
+                "mount": [
+                  "function.common.subscribe",
+                  "function.navigation.page.subscribe"
+                ],
+                "unmount": [
+                  "function.common.unsubscribe",
+                  "function.navigation.page.unsubscribe"
+                ]
+              },
+              "children": []
             }
           }
         ]

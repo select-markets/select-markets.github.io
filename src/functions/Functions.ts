@@ -159,12 +159,25 @@ const map_function: Map_Function = {
               }
             );
         },
-        publish_login: (payload: Payload_Function_Data) => {
-          if (payload.handler_event)
-            payload.handler_event.publish("page_navigation", "Login");
-        },
         publish_home: (payload: Payload_Function_Data) => {
-          window.location.reload();
+          if (payload.handler_event)
+            payload.handler_event.publish("page_navigation", "Home");
+        },
+        publish_contact: (payload: Payload_Function_Data) => {
+          if (payload.handler_event)
+            payload.handler_event.publish("page_navigation", "Contact");
+        },
+        publish_about: (payload: Payload_Function_Data) => {
+          if (payload.handler_event)
+            payload.handler_event.publish("page_navigation", "About");
+        },
+        publish_faq: (payload: Payload_Function_Data) => {
+          if (payload.handler_event)
+            payload.handler_event.publish("page_navigation", "FAQ");
+        },
+        publish_vendor: (payload: Payload_Function_Data) => {
+          if (payload.handler_event)
+            payload.handler_event.publish("page_navigation", "Vendor");
         },
       },
     },
