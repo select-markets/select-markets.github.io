@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "FankyBubbleGraffiti";
+  src: url("/src/assets/fonts/FankyBubbleGraffiti-Regular.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 [data-component="Component_Hero"] {
   position: fixed;
   height: 100vh;
@@ -26,20 +34,26 @@
   justify-content: center;
   align-items: center;
   transition: 0.3s all ease;
+  mix-blend-mode: difference;
 }
 
 [data-component="Component_Hero"] .title_container .title_up h1,
 [data-component="Component_Hero"] .title_container .title_down h1 {
-  font-size: max(min(24vw, 24vh), 100%);
+  font-family: "FankyBubbleGraffiti", sans-serif;
+  font-size: max(min(30vw, 30vh), 100%);
+  font-weight: 900;
   margin: 0;
+
+  padding: 10px;
+  transition: 0.3s all ease;
 }
 
 [data-component="Component_Hero"] .title_container .title_up.hovered {
-  transform: translateY(-15vh);
+  transform: translateY(-20vh);
 }
 
 [data-component="Component_Hero"] .title_container .title_down.hovered {
-  transform: translateY(15vh);
+  transform: translateY(20vh);
 }
 
 [data-component="Component_Hero"] [data-component="Component_Text"] {

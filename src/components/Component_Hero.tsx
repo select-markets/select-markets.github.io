@@ -56,7 +56,56 @@ export const Component_Hero = ({
     gatherAssets();
   }, []);
 
-  if (assets.length > 0)
+  const renderTransformedText = (text: string, invert = false) => {
+    const length = text.length;
+
+    return text.split("").map((char, index) => {
+      let transform = "";
+
+      if (hovered) {
+        const middle = length / 2; // Horizontal center of the text
+        const a = invert ? -0.05 : 0.05; // Controls steepness, negative when inverted
+        const translateY = a * Math.pow(index - middle, 2) * 10; // Parabolic function
+
+        // Determine rotation, making each character point toward the middle
+        const rotate =
+          index < middle
+            ? invert
+              ? 5 * (middle - index)
+              : -5 * (middle - index) // Left side: rotate towards the center
+            : invert
+            ? -5 * (index - middle)
+            : 5 * (index - middle); // Right side: rotate towards the center
+
+        // Apply transform if translation or rotation is not zero
+        if (translateY !== 0 || rotate !== 0) {
+          transform = `translateY(${translateY}vh) rotate(${rotate}deg)`;
+        }
+      }
+
+      // Cycle through assets for background images
+      const assetIndex = index % assets.length;
+      const backgroundImage = `url(${assets[assetIndex].url}) no-repeat center`;
+
+      return (
+        <h1
+          key={index}
+          style={{
+            transform,
+            background: backgroundImage,
+            backgroundSize: "cover", // Ensure image covers text
+            WebkitBackgroundClip: "text",
+            color: "transparent", // Make text transparent to show background image
+            transition: "transform 0.3s ease-in-out", // Smooth transitions
+          }}
+        >
+          {char}
+        </h1>
+      );
+    });
+  };
+
+  if (assets.length > 0 && data.json.content.text)
     return (
       <div
         data-component="Component_Hero"
@@ -66,10 +115,10 @@ export const Component_Hero = ({
       >
         <Utility_Hover setHovered={setHovered} className="title_container">
           <div className={`title_up ${hovered && "hovered"}`}>
-            <h1>{data.json.content.text}</h1>
+            {renderTransformedText(data.json.content.text)}
           </div>
           <div className={`title_down ${hovered && "hovered"}`}>
-            <h1>{data.json.content.text}</h1>
+            {renderTransformedText(data.json.content.text, true)}
           </div>
         </Utility_Hover>
         <div className="content_container">
