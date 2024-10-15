@@ -1,12 +1,10 @@
 import "../assets/css/Display_HTML.css";
 
-interface Props_Component_Display_HTML {
+interface Props_Utility_Display_HTML {
   html?: string; // Optional markdown string to be rendered.
 }
 
-export const Component_Display_HTML = ({
-  html,
-}: Props_Component_Display_HTML) => {
+export const Utility_Display_HTML = ({ html }: Props_Utility_Display_HTML) => {
   // Function to decode HTML entities.
   const decodeHtmlEntities = (input?: string): string => {
     if (input) {
@@ -37,7 +35,7 @@ export const Component_Display_HTML = ({
   // but one must ensure the markdown content is sanitized to prevent XSS attacks.
   return (
     <div
-      data-component="Component_Display_HTML"
+      data-component="Utility_Display_HTML"
       dangerouslySetInnerHTML={returnHTML}
     />
   );

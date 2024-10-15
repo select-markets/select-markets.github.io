@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Component_Display_HTML } from "./Component_Display_HTML";
+import { Utility_Display_HTML } from "../utilities/Utility_Display_HTML";
 
 export const Component_Page_Title = ({
   data,
@@ -20,7 +20,7 @@ export const Component_Page_Title = ({
       data-css={data.json.content.key_css}
       data-key={data.key_call}
     >
-      <Component_Display_HTML
+      <Utility_Display_HTML
         html={JSON.stringify(data.json.content.translations)}
       />
     </h1>

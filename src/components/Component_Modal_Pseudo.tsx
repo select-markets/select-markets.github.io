@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Component_Display_HTML } from "./Component_Display_HTML";
+import { Utility_Display_HTML } from "../utilities/Utility_Display_HTML";
 import jsonEqual from "../helper/jsonEqual";
 import "../assets/css/Modal.css";
 
@@ -69,7 +69,7 @@ const Component_Modal: React.FC<Props_Component_Modal> = ({
         <h1 onClick={handleClose}>&times;</h1>
       </div>
       <div data-component="Component_Modal_Content">
-        <Component_Display_HTML html={payload_modal.modal.content} />
+        <Utility_Display_HTML html={payload_modal.modal.content} />
       </div>
     </div>
   );

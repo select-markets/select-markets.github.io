@@ -34,7 +34,7 @@
 
 [data-component="Component_Header"]
   [data-component="Component_Button"]
-  [data-component="Component_Display_HTML"] {
+  [data-component="Utility_Display_HTML"] {
   position: relative;
 }
 

@@ -173,9 +173,16 @@
                   "loadable": true,
                   "content": {
                     "functions": {
-                      "mount": ["function.common.subscribe"],
-                      "unmount": ["function.common.unsubscribe"]
+                      "mount": [
+                        "function.common.subscribe",
+                        "function.assets.subscribe"
+                      ],
+                      "unmount": [
+                        "function.common.unsubscribe",
+                        "function.assets.unsubscribe"
+                      ]
                     },
+                    "assets": [{ "key_asset": "globe" }],
                     "text": "Vintage Finds for Modern Minds"
                   }
                 }
@@ -264,13 +271,14 @@
     "modals": [],
     "notices": [],
     "assets": [
-      { "key_asset": "hero_img_0", "url": "assets/images/select-0.png " },
-      { "key_asset": "hero_img_1", "url": "assets/images/select-1.jpg " },
-      { "key_asset": "hero_img_2", "url": "assets/images/select-2.jpg " },
-      { "key_asset": "hero_img_3", "url": "assets/images/select-3.jpg " },
-      { "key_asset": "hero_img_4", "url": "assets/images/select-4.webp " },
-      { "key_asset": "hero_img_5", "url": "assets/images/select-5.jpg " },
-      { "key_asset": "hero_img_6", "url": "assets/images/select-6.jpg " }
+      { "key_asset": "globe", "url": "assets/models/planet_earth.glb" },
+      { "key_asset": "hero_img_0", "url": "assets/images/select-0.png" },
+      { "key_asset": "hero_img_1", "url": "assets/images/select-1.jpg" },
+      { "key_asset": "hero_img_2", "url": "assets/images/select-2.jpg" },
+      { "key_asset": "hero_img_3", "url": "assets/images/select-3.jpg" },
+      { "key_asset": "hero_img_4", "url": "assets/images/select-4.webp" },
+      { "key_asset": "hero_img_5", "url": "assets/images/select-5.jpg" },
+      { "key_asset": "hero_img_6", "url": "assets/images/select-6.jpg" }
     ]
   }
 }

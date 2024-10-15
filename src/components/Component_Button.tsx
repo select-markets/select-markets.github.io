@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import jsonEqual from "../helper/jsonEqual";
-import { Component_Display_HTML } from "./Component_Display_HTML";
+import { Utility_Display_HTML } from "../utilities/Utility_Display_HTML";
 
 export const Component_Button = ({
   data,
@@ -29,7 +29,7 @@ export const Component_Button = ({
         onClick={() => data.handleLifecycle({ input: data.json })}
         data-key={data.key_call}
       >
-        <Component_Display_HTML html={data.json.content.text} />
+        <Utility_Display_HTML html={data.json.content.text} />
       </button>
     );
 };

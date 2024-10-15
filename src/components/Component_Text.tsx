@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Component_Display_HTML } from "./Component_Display_HTML";
+import { Utility_Display_HTML } from "../utilities/Utility_Display_HTML";
 import jsonEqual from "../helper/jsonEqual";
 import "../assets/css/Text.css";
 
@@ -42,7 +42,7 @@ export const Component_Text = ({
       data-css={data.json.content.key_css}
       data-key={data.key_call}
     >
-      <Component_Display_HTML html={data.json.content.text} />
+      <Utility_Display_HTML html={data.json.content.text} />
     </div>
   );
 };
