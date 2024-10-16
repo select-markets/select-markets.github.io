@@ -65,11 +65,11 @@
 }
 
 [data-component="Component_Button_Logo"] .title_container .title_up.hovered {
-  transform: translateY(-0px);
+  transform: translateY(-10px);
 }
 
 [data-component="Component_Button_Logo"] .title_container .title_down.hovered {
-  transform: translateY(110px);
+  transform: translateY(120px);
 }
 
 [data-component="Component_Button_Logo"] [data-component="Component_Text"] {
