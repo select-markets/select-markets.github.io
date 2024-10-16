@@ -1,10 +1,3 @@
-@font-face {
-  font-family: "Madloud";
-  src: url("/src/assets/fonts/Madloud.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
 [data-component="Component_Button_Logo"] {
   position: relative;
   display: flex;
@@ -59,18 +52,6 @@
   -webkit-background-clip: text;
   color: transparent;
   animation: shimmer 10s infinite ease-in-out;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: 0% 50%; /* Start at the left */
-  }
-  50% {
-    background-position: 100% 50%; /* Move the gradient to the right */
-  }
-  100% {
-    background-position: 0% 50%; /* Move it back to the left */
-  }
 }
 
 [data-component="Component_Button_Logo"] .title_container .title_up.hovered h1,

@@ -4,7 +4,7 @@
   flex-direction: row;
   position: fixed;
   justify-content: space-between;
-  padding-top: 50px;
+  padding: 50px;
   align-items: center;
   z-index: 2;
 }

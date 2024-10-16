@@ -1,8 +1,8 @@
 import { memo, useEffect, useState } from "react";
 import jsonEqual from "../helper/jsonEqual";
-import { Utility_Display_HTML } from "../utilities/Utility_Display_HTML";
 import { Utility_Model_Float } from "../utilities/Utility_Model_Float";
 import "../assets/css/Button_Model.css";
+import { Component_Button_Logo } from "./Component_Button_Logo";
 
 const MemoizedModel = memo(Utility_Model_Float);
 
@@ -10,6 +10,7 @@ export const Component_Button_Model = ({
   data,
   results,
   onFinishLoad,
+  notifyLog,
 }: Props_Component_Rendered) => {
   const [lastResults, setLastResults] = useState<any>();
   const [assets, setAssets] = useState<Asset[]>([]);
@@ -58,7 +59,6 @@ export const Component_Button_Model = ({
   }, []);
 
   useEffect(() => {
-    console.log(assets.length);
     if (assets.length > 0) onFinishLoad();
   }, [assets]);
 
@@ -70,8 +70,21 @@ export const Component_Button_Model = ({
         onClick={() => data.handleLifecycle({ input: data.json })}
         data-key={data.key_call}
       >
-        <Utility_Display_HTML html={data.json.content.text} />
-        <MemoizedModel url={assets[0].url as string} />
+        <Component_Button_Logo
+          data={{
+            key_call: data.key_call,
+            json: data.json,
+            handler_event: data.handler_event,
+            handler_function: data.handler_function,
+            handleLifecycle: data.handleLifecycle,
+          }}
+          results={results}
+          onFinishLoad={onFinishLoad}
+          notifyLog={notifyLog}
+        />
+        <div className="canvas_container">
+          <MemoizedModel url={assets[0].url as string} />
+        </div>
       </button>
     );
 };

@@ -90,7 +90,21 @@
                             ]
                           },
                           "assets": [{ "key_asset": "header_model_vendor" }],
-                          "text": "VENDOR"
+                          "text": "VENDOR",
+                          "children": [
+                            {
+                              "key_component": "text",
+                              "enabled": true,
+                              "loadable": true,
+                              "content": {
+                                "functions": {
+                                  "mount": ["function.common.subscribe"],
+                                  "unmount": ["function.common.unsubscribe"]
+                                },
+                                "text": "Vendor Form"
+                              }
+                            }
+                          ]
                         }
                       },
                       {
@@ -113,7 +127,21 @@
                             ]
                           },
                           "assets": [{ "key_asset": "header_model_faq" }],
-                          "text": "FAQ"
+                          "text": "FAQ",
+                          "children": [
+                            {
+                              "key_component": "text",
+                              "enabled": true,
+                              "loadable": true,
+                              "content": {
+                                "functions": {
+                                  "mount": ["function.common.subscribe"],
+                                  "unmount": ["function.common.unsubscribe"]
+                                },
+                                "text": "Frequently Asked Questions"
+                              }
+                            }
+                          ]
                         }
                       },
                       {
@@ -166,7 +194,21 @@
                             ]
                           },
                           "assets": [{ "key_asset": "header_model_about" }],
-                          "text": "ABOUT"
+                          "text": "ABOUT",
+                          "children": [
+                            {
+                              "key_component": "text",
+                              "enabled": true,
+                              "loadable": true,
+                              "content": {
+                                "functions": {
+                                  "mount": ["function.common.subscribe"],
+                                  "unmount": ["function.common.unsubscribe"]
+                                },
+                                "text": "Who are we?"
+                              }
+                            }
+                          ]
                         }
                       },
                       {
@@ -189,7 +231,21 @@
                             ]
                           },
                           "assets": [{ "key_asset": "header_model_contact" }],
-                          "text": "CONTACT"
+                          "text": "CONTACT",
+                          "children": [
+                            {
+                              "key_component": "text",
+                              "enabled": true,
+                              "loadable": true,
+                              "content": {
+                                "functions": {
+                                  "mount": ["function.common.subscribe"],
+                                  "unmount": ["function.common.unsubscribe"]
+                                },
+                                "text": "Talk to us"
+                              }
+                            }
+                          ]
                         }
                       }
                     ]
