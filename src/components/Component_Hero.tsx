@@ -63,16 +63,19 @@ export const Component_Hero = ({
         onClick={() => data.handleLifecycle}
         data-key={data.key_call}
       >
+        <div className="hover_container">
+          <Utility_Hover setHovered={setHovered} />
+        </div>
         <div className="canvas_container">
           <Utility_Hover setHovered={setHovered} />
           <MemoizedModel
             url={"assets/models/planet_earth.glb"}
-            colors={["#ffffff", "#ff6347", "#ff8c00", "#ffd700", "#ff69b4"]}
-            model_position={[0, -3, 0]}
-            model_rotation={[0, -2, 0]}
+            colors={["#ff6347", "#ff8c00", "#ffd700", "#ff69b4"]}
+            model_position={[0, -3.5, 2]}
+            model_rotation={[0, 0, 0]}
             model_scale={1}
             model_spin_speed={0.1}
-            light_intensity={1}
+            light_intensity={1.5}
             light_position={[0, 0, 0]}
           />
         </div>
