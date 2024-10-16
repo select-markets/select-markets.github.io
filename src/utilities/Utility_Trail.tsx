@@ -67,7 +67,6 @@ export const Utility_Trail = ({
           loadedCount++;
 
           if (loadedCount === images.length) {
-            console.log(onFinishLoad);
             setPreloadedImages(loadedImages);
             setLoadingComplete(true);
             if (onFinishLoad) onFinishLoad();

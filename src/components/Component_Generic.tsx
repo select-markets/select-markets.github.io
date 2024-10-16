@@ -20,6 +20,7 @@ import { Component_Loader } from "./Component_Loader";
 import { Component_Header } from "./Component_Header";
 import { Component_Button_Logo } from "./Component_Button_Logo";
 import { Component_Hero } from "./Component_Hero";
+import { Component_Button_Model } from "./Component_Button_Model";
 
 const Component_Map: Record<
   string,
@@ -29,6 +30,7 @@ const Component_Map: Record<
   banner: Component_Banner, // like a container with a background color
   button: Component_Button, // button that can render html inside of it
   button_logo: Component_Button_Logo,
+  button_model: Component_Button_Model,
   container: Component_Container, // generic container that can be manipulated via css that can hold other components
   header: Component_Header,
   hero: Component_Hero,
@@ -131,8 +133,6 @@ const Component_Generic = ({ data }: Props_Component_Generic) => {
   }, [key_call]);
 
   function onFinishLoad() {
-    console.log(key_call);
-
     if (data.loadable)
       handler_event.publish("load", {
         key_call: key_call,

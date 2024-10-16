@@ -2,115 +2,15 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  padding: 50px;
   position: fixed;
   justify-content: space-between;
-  z-index: 2;
-}
-
-[data-component="Component_Header"] [data-component="Component_Button"] {
-  height: 60px;
-  border-width: 0px;
-  cursor: pointer;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  display: flex;
+  padding-top: 50px;
   align-items: center;
-  padding: 10px 40px;
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(
-    60deg,
-    #ff0080,
-    #ff6a00eb,
-    #7300ff,
-    #ff6a00eb,
-    #ff0080
-  );
-  background-size: 200% 200%;
-  animation: shimmer 10s infinite ease-in-out;
-}
-
-[data-component="Component_Header"]
-  [data-component="Component_Button"]
-  [data-component="Utility_Display_HTML"] {
-  position: relative;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: 0% 50%; /* Start at the left */
-  }
-  50% {
-    background-position: 50% 50%; /* Move the gradient to the right */
-  }
-  100% {
-    background-position: 0% 50%; /* Move it back to the left */
-  }
-}
-
-[data-component="Component_Header"]
-  [data-component="Component_Button"][data-css="button_vendor"] {
-  width: 25%;
-  justify-content: flex-end;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
-[data-component="Component_Header"]
-  [data-component="Component_Button"][data-css="button_faq"],
-[data-component="Component_Header"]
-  [data-component="Component_Button"][data-css="button_about"] {
-  width: 10%;
-  justify-content: center;
-  border-radius: 0;
-  background-size: 350% 350%;
-  animation: shimmer-alt 10s infinite ease-in-out reverse;
-}
-
-@keyframes shimmer-alt {
-  0% {
-    background-position: 50% 0%; /* Start at the left */
-  }
-  50% {
-    background-position: 100% 50%; /* Move the gradient to the right */
-  }
-  100% {
-    background-position: 50% 0%; /* Move it back to the left */
-  }
-}
-
-[data-component="Component_Header"]
-  [data-component="Component_Button"][data-css="button_contact"] {
-  width: 25%;
-  justify-content: flex-start;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  z-index: 2;
 }
 
 [data-component="Component_Header"]
   [data-component="Component_Button_Logo"][data-css="button_logo"] {
   width: 20%;
   min-width: 370px;
-}
-
-[data-component="Component_Header"]
-  [data-component="Component_Button"]::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(circle, #2c2c34 10%, transparent 10.1%);
-  transition: width 0.5s ease, height 0.5s ease;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-}
-
-[data-component="Component_Header"]
-  [data-component="Component_Button"]:hover::before {
-  width: 2000%;
-  height: 200%;
 }

@@ -71,34 +71,48 @@
                     },
                     "children": [
                       {
-                        "key_component": "button",
+                        "key_component": "button_model",
                         "enabled": true,
                         "loadable": true,
                         "content": {
                           "key_css": "button_vendor",
                           "functions": {
-                            "mount": ["function.common.subscribe"],
-                            "unmount": ["function.common.unsubscribe"],
+                            "mount": [
+                              "function.common.subscribe",
+                              "function.assets.subscribe"
+                            ],
+                            "unmount": [
+                              "function.common.unsubscribe",
+                              "function.assets.unsubscribe"
+                            ],
                             "lifecycle": [
                               "function.navigation.page.publish_vendor"
                             ]
                           },
+                          "assets": [{ "key_asset": "header_model_vendor" }],
                           "text": "VENDOR"
                         }
                       },
                       {
-                        "key_component": "button",
+                        "key_component": "button_model",
                         "enabled": true,
                         "loadable": true,
                         "content": {
                           "key_css": "button_faq",
                           "functions": {
-                            "mount": ["function.common.subscribe"],
-                            "unmount": ["function.common.unsubscribe"],
+                            "mount": [
+                              "function.common.subscribe",
+                              "function.assets.subscribe"
+                            ],
+                            "unmount": [
+                              "function.common.unsubscribe",
+                              "function.assets.unsubscribe"
+                            ],
                             "lifecycle": [
                               "function.navigation.page.publish_faq"
                             ]
                           },
+                          "assets": [{ "key_asset": "header_model_faq" }],
                           "text": "FAQ"
                         }
                       },
@@ -133,34 +147,48 @@
                         }
                       },
                       {
-                        "key_component": "button",
+                        "key_component": "button_model",
                         "enabled": true,
                         "loadable": true,
                         "content": {
                           "key_css": "button_about",
                           "functions": {
-                            "mount": ["function.common.subscribe"],
-                            "unmount": ["function.common.unsubscribe"],
+                            "mount": [
+                              "function.common.subscribe",
+                              "function.assets.subscribe"
+                            ],
+                            "unmount": [
+                              "function.common.unsubscribe",
+                              "function.assets.unsubscribe"
+                            ],
                             "lifecycle": [
                               "function.navigation.page.publish_about"
                             ]
                           },
+                          "assets": [{ "key_asset": "header_model_about" }],
                           "text": "ABOUT"
                         }
                       },
                       {
-                        "key_component": "button",
+                        "key_component": "button_model",
                         "enabled": true,
                         "loadable": true,
                         "content": {
                           "key_css": "button_contact",
                           "functions": {
-                            "mount": ["function.common.subscribe"],
-                            "unmount": ["function.common.unsubscribe"],
+                            "mount": [
+                              "function.common.subscribe",
+                              "function.assets.subscribe"
+                            ],
+                            "unmount": [
+                              "function.common.unsubscribe",
+                              "function.assets.unsubscribe"
+                            ],
                             "lifecycle": [
                               "function.navigation.page.publish_contact"
                             ]
                           },
+                          "assets": [{ "key_asset": "header_model_contact" }],
                           "text": "CONTACT"
                         }
                       }
@@ -303,6 +331,10 @@
     "modals": [],
     "notices": [],
     "assets": [
+      { "key_asset": "header_model_about", "url": "assets/models/plane.glb" },
+      { "key_asset": "header_model_contact", "url": "assets/models/cloud.glb" },
+      { "key_asset": "header_model_faq", "url": "assets/models/ship.glb" },
+      { "key_asset": "header_model_vendor", "url": "assets/models/moon.glb" },
       { "key_asset": "hero_img_0", "url": "assets/images/select-0.jpg" },
       { "key_asset": "hero_img_1", "url": "assets/images/select-1.jpg" },
       { "key_asset": "hero_img_2", "url": "assets/images/select-2.jpg" },
