@@ -131,6 +131,8 @@ const Component_Generic = ({ data }: Props_Component_Generic) => {
   }, [key_call]);
 
   function onFinishLoad() {
+    console.log(key_call);
+
     if (data.loadable)
       handler_event.publish("load", {
         key_call: key_call,

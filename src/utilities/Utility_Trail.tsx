@@ -50,8 +50,48 @@ export const Utility_Trail = ({
     x: 0,
     y: 0,
   });
+  const [preloadedImages, setPreloadedImages] = useState<string[]>([]);
+  const [loadingComplete, setLoadingComplete] = useState<boolean>(false);
 
+  // Preload images and trigger onFinishLoad after all images are loaded
   useEffect(() => {
+    const preloadImages = async () => {
+      const loadedImages: string[] = [];
+      let loadedCount = 0;
+
+      images.forEach((image, index) => {
+        const img = new Image();
+        img.src = image.url as string;
+        img.onload = () => {
+          loadedImages[index] = img.src;
+          loadedCount++;
+
+          if (loadedCount === images.length) {
+            console.log(onFinishLoad);
+            setPreloadedImages(loadedImages);
+            setLoadingComplete(true);
+            if (onFinishLoad) onFinishLoad();
+          }
+        };
+        img.onerror = () => {
+          console.error(`Failed to load image: ${image.url}`);
+          loadedCount++;
+          if (loadedCount === images.length) {
+            setPreloadedImages(loadedImages);
+            setLoadingComplete(true);
+            if (onFinishLoad) onFinishLoad();
+          }
+        };
+      });
+    };
+
+    preloadImages();
+  }, [images, onFinishLoad]);
+
+  // Mouse movement and trail spawning logic
+  useEffect(() => {
+    if (!loadingComplete) return; // Ensure images are preloaded before interacting
+
     const handleMouseMove = ({ clientX, clientY }: MouseEvent) => {
       if (hovered) {
         const distance = Math.hypot(
@@ -71,7 +111,7 @@ export const Utility_Trail = ({
               index: currentImageIndex,
             },
           ]);
-          setCurrentImageIndex((prev) => (prev + 1) % images.length);
+          setCurrentImageIndex((prev) => (prev + 1) % preloadedImages.length);
           setLastSpawnPos({ x: clientX, y: clientY });
         }
       }
@@ -79,10 +119,17 @@ export const Utility_Trail = ({
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [hovered, lastSpawnPos, images.length, currentImageIndex]);
+  }, [
+    hovered,
+    lastSpawnPos,
+    preloadedImages.length,
+    currentImageIndex,
+    loadingComplete,
+  ]);
 
   const removeImage = (id: string) =>
     setTrail((prev) => prev.filter((item) => item.id !== id));
+
   return (
     <>
       {trail.map(({ coordinate: { x, y }, id, index }) => (
@@ -90,7 +137,7 @@ export const Utility_Trail = ({
           key={id}
           x={x}
           y={y}
-          url={images[index].url}
+          url={preloadedImages[index]} // Use preloaded images
           onRemove={() => removeImage(id)}
         />
       ))}
