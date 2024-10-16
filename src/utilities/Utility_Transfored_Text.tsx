@@ -54,6 +54,7 @@ export const Utility_Transformed_Text: React.FC<
     return (
       <h1
         key={index}
+        data-component="Utility_Transformed_Text"
         style={{
           transform,
         }}

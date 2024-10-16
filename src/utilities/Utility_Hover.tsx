@@ -1,8 +1,9 @@
 import { ReactNode } from "react";
+import "../assets/css/Hover.css";
 
 interface Props_Utility_Hover {
   setHovered: (state: boolean) => void;
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
 }
 

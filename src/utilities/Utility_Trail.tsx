@@ -36,9 +36,14 @@ const Utility_Trail_Image = ({
 interface Props_Utility_Trail {
   hovered: boolean;
   images: Asset[];
+  onFinishLoad?: () => void;
 }
 
-export const Utility_Trail = ({ hovered, images }: Props_Utility_Trail) => {
+export const Utility_Trail = ({
+  hovered,
+  images,
+  onFinishLoad,
+}: Props_Utility_Trail) => {
   const [trail, setTrail] = useState<Payload_Trail[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [lastSpawnPos, setLastSpawnPos] = useState<Payload_Coordinate>({
@@ -76,11 +81,8 @@ export const Utility_Trail = ({ hovered, images }: Props_Utility_Trail) => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [hovered, lastSpawnPos, images.length, currentImageIndex]);
 
-  const removeImage = (id: string) => {
-    console.log(trail);
+  const removeImage = (id: string) =>
     setTrail((prev) => prev.filter((item) => item.id !== id));
-  };
-
   return (
     <>
       {trail.map(({ coordinate: { x, y }, id, index }) => (

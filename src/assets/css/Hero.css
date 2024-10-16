@@ -7,7 +7,6 @@
 [data-component="Component_Hero"] .canvas_container {
   position: absolute;
   bottom: 0;
-  height: 70vh;
+  height: 80vh;
   width: 100vw;
-  background-color: pink;
 }

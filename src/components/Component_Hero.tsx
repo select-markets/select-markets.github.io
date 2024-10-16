@@ -1,8 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import jsonEqual from "../helper/jsonEqual";
-import { Canvas } from "@react-three/fiber";
 import "../assets/css/Hero.css";
 import { Utility_Model } from "../utilities/Utility_Model";
+import { Utility_Hover } from "../utilities/Utility_Hover";
+import { Utility_Trail } from "../utilities/Utility_Trail";
+
+const MemoizedModel = memo(Utility_Model);
 
 export const Component_Hero = ({
   data,
@@ -11,7 +14,7 @@ export const Component_Hero = ({
 }: Props_Component_Rendered) => {
   const [lastResults, setLastResults] = useState<any>();
   const [assets, setAssets] = useState<Asset[]>([]);
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [hovered, setHovered] = useState<boolean>(false);
 
   const parseAssetsResults = (result_assets: Payload_Result) =>
     setAssets(result_assets.data);
@@ -49,10 +52,6 @@ export const Component_Hero = ({
   }, [results]);
 
   useEffect(() => {
-    if (assets.length > 0) onFinishLoad();
-  }, [assets]);
-
-  useEffect(() => {
     gatherAssets();
   }, []);
 
@@ -64,13 +63,24 @@ export const Component_Hero = ({
         onClick={() => data.handleLifecycle}
         data-key={data.key_call}
       >
-        <div className="canvas_container" ref={containerRef}>
-          <Canvas>
-            <ambientLight intensity={0.5} />
-            <directionalLight position={[2, 2, 2]} />
-            <Utility_Model url={assets[0].url as string} />
-          </Canvas>
+        <div className="canvas_container">
+          <Utility_Hover setHovered={setHovered} />
+          <MemoizedModel
+            url={"assets/models/planet_earth.glb"}
+            colors={["#ffffff", "#ff6347", "#ff8c00", "#ffd700", "#ff69b4"]}
+            model_position={[0, -3, 0]}
+            model_rotation={[0, 0, 0]}
+            model_scale={1}
+            model_spin_speed={0.1}
+            light_intensity={1}
+            light_position={[0, 0, 0]}
+          />
         </div>
+        <Utility_Trail
+          hovered={hovered}
+          images={assets}
+          onFinishLoad={onFinishLoad}
+        />
       </div>
     );
 };
