@@ -21,6 +21,7 @@ import { Component_Header } from "./Component_Header";
 import { Component_Button_Logo } from "./Component_Button_Logo";
 import { Component_Hero } from "./Component_Hero";
 import { Component_Button_Model } from "./Component_Button_Model";
+import { Component_Text_Animated } from "./Component_Text_Animated";
 
 const Component_Map: Record<
   string,
@@ -39,6 +40,7 @@ const Component_Map: Record<
   page: Component_Page, // component for a page that can hold other components
   page_title: Component_Page_Title, // basically just an <h1>, can render html
   text: Component_Text, // generic text component , can render html
+  text_animated: Component_Text_Animated,
 };
 
 const Component_Generic = ({ data }: Props_Component_Generic) => {
@@ -133,6 +135,7 @@ const Component_Generic = ({ data }: Props_Component_Generic) => {
   }, [key_call]);
 
   function onFinishLoad() {
+    console.log(key_call);
     if (data.loadable)
       handler_event.publish("load", {
         key_call: key_call,

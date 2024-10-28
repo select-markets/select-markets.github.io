@@ -1,0 +1,12 @@
+[data-component="Component_Text_Animated"] .animated_text {
+  position: relative;
+  display: inline-block;
+  font-size: 2rem; /* Adjust as needed */
+}
+
+[data-component="Component_Text_Animated"] .letter {
+  display: inline-block;
+  opacity: 0; /* Initially hidden */
+  transform: translateY(100%); /* Start off-screen */
+  transition: transform 0.5s ease, color 0.5s ease, opacity 0.5s ease;
+}

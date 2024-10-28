@@ -7,7 +7,6 @@ export const Component_Header = ({
   data,
   results,
   onFinishLoad,
-  notifyLog,
 }: Props_Component_Rendered) => {
   const [lastResults, setLastResults] = useState<any>();
 

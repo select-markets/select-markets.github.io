@@ -71,7 +71,7 @@
                     },
                     "children": [
                       {
-                        "key_component": "button_model",
+                        "key_component": "button_logo",
                         "enabled": true,
                         "loadable": true,
                         "content": {
@@ -89,7 +89,6 @@
                               "function.navigation.page.publish_vendor"
                             ]
                           },
-                          "assets": [{ "key_asset": "header_model_vendor" }],
                           "text": "VENDOR",
                           "children": [
                             {
@@ -108,7 +107,7 @@
                         }
                       },
                       {
-                        "key_component": "button_model",
+                        "key_component": "button_logo",
                         "enabled": true,
                         "loadable": true,
                         "content": {
@@ -126,7 +125,6 @@
                               "function.navigation.page.publish_faq"
                             ]
                           },
-                          "assets": [{ "key_asset": "header_model_faq" }],
                           "text": "FAQ",
                           "children": [
                             {
@@ -149,7 +147,7 @@
                         "enabled": true,
                         "loadable": true,
                         "content": {
-                          "key_css": "button_logo",
+                          "key_css": "button_home",
                           "functions": {
                             "mount": ["function.common.subscribe"],
                             "unmount": ["function.common.unsubscribe"],
@@ -175,7 +173,7 @@
                         }
                       },
                       {
-                        "key_component": "button_model",
+                        "key_component": "button_logo",
                         "enabled": true,
                         "loadable": true,
                         "content": {
@@ -193,7 +191,6 @@
                               "function.navigation.page.publish_about"
                             ]
                           },
-                          "assets": [{ "key_asset": "header_model_about" }],
                           "text": "ABOUT",
                           "children": [
                             {
@@ -212,7 +209,7 @@
                         }
                       },
                       {
-                        "key_component": "button_model",
+                        "key_component": "button_logo",
                         "enabled": true,
                         "loadable": true,
                         "content": {
@@ -230,7 +227,6 @@
                               "function.navigation.page.publish_contact"
                             ]
                           },
-                          "assets": [{ "key_asset": "header_model_contact" }],
                           "text": "CONTACT",
                           "children": [
                             {
@@ -252,54 +248,83 @@
                   }
                 },
                 {
-                  "key_component": "hero",
+                  "key_component": "container",
                   "enabled": true,
                   "loadable": true,
                   "content": {
+                    "key_css": "vertical",
                     "functions": {
-                      "mount": [
-                        "function.common.subscribe",
-                        "function.assets.subscribe"
-                      ],
-                      "unmount": [
-                        "function.common.unsubscribe",
-                        "function.assets.unsubscribe"
-                      ]
+                      "mount": ["function.common.subscribe"],
+                      "unmount": ["function.common.unsubscribe"]
                     },
-                    "assets": [
-                      { "key_asset": "hero_img_0" },
-                      { "key_asset": "hero_img_1" },
-                      { "key_asset": "hero_img_2" },
-                      { "key_asset": "hero_img_3" },
-                      { "key_asset": "hero_img_4" },
-                      { "key_asset": "hero_img_5" },
-                      { "key_asset": "hero_img_6" },
-                      { "key_asset": "hero_img_7" },
-                      { "key_asset": "hero_img_8" },
-                      { "key_asset": "hero_img_9" },
-                      { "key_asset": "hero_img_10" },
-                      { "key_asset": "hero_img_11" },
-                      { "key_asset": "hero_img_12" },
-                      { "key_asset": "hero_img_13" },
-                      { "key_asset": "hero_img_14" },
-                      { "key_asset": "hero_img_15" },
-                      { "key_asset": "hero_img_16" },
-                      { "key_asset": "hero_img_17" },
-                      { "key_asset": "hero_img_18" },
-                      { "key_asset": "hero_img_19" },
-                      { "key_asset": "hero_img_20" },
-                      { "key_asset": "hero_img_21" },
-                      { "key_asset": "hero_img_22" },
-                      { "key_asset": "hero_img_23" },
-                      { "key_asset": "hero_img_24" },
-                      { "key_asset": "hero_img_25" },
-                      { "key_asset": "hero_img_26" },
-                      { "key_asset": "hero_img_27" },
-                      { "key_asset": "hero_img_28" },
-                      { "key_asset": "hero_img_29" },
-                      { "key_asset": "hero_img_30" }
-                    ],
-                    "text": "Vintage Finds for Modern Minds"
+                    "children": [
+                      {
+                        "key_component": "hero",
+                        "enabled": true,
+                        "loadable": true,
+                        "content": {
+                          "functions": {
+                            "mount": [
+                              "function.common.subscribe",
+                              "function.assets.subscribe"
+                            ],
+                            "unmount": [
+                              "function.common.unsubscribe",
+                              "function.assets.unsubscribe"
+                            ]
+                          },
+                          "assets": [
+                            { "key_asset": "hero_img_0" },
+                            { "key_asset": "hero_img_1" },
+                            { "key_asset": "hero_img_2" },
+                            { "key_asset": "hero_img_3" },
+                            { "key_asset": "hero_img_4" },
+                            { "key_asset": "hero_img_5" },
+                            { "key_asset": "hero_img_6" },
+                            { "key_asset": "hero_img_7" },
+                            { "key_asset": "hero_img_8" },
+                            { "key_asset": "hero_img_9" },
+                            { "key_asset": "hero_img_10" },
+                            { "key_asset": "hero_img_11" },
+                            { "key_asset": "hero_img_12" },
+                            { "key_asset": "hero_img_13" },
+                            { "key_asset": "hero_img_14" },
+                            { "key_asset": "hero_img_15" },
+                            { "key_asset": "hero_img_16" },
+                            { "key_asset": "hero_img_17" },
+                            { "key_asset": "hero_img_18" },
+                            { "key_asset": "hero_img_19" },
+                            { "key_asset": "hero_img_20" },
+                            { "key_asset": "hero_img_21" },
+                            { "key_asset": "hero_img_22" },
+                            { "key_asset": "hero_img_23" },
+                            { "key_asset": "hero_img_24" },
+                            { "key_asset": "hero_img_25" },
+                            { "key_asset": "hero_img_26" },
+                            { "key_asset": "hero_img_27" },
+                            { "key_asset": "hero_img_28" },
+                            { "key_asset": "hero_img_29" },
+                            { "key_asset": "hero_img_30" }
+                          ],
+                          "text": "Vintage Finds for Modern Minds",
+                          "children": [
+                            {
+                              "key_component": "text_animated",
+                              "enabled": true,
+                              "loadable": false,
+                              "content": {
+                                "key_page": "FAQ",
+                                "functions": {
+                                  "mount": ["function.common.subscribe"],
+                                  "unmount": ["function.common.unsubscribe"]
+                                },
+                                "text": "SELECT"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
                   }
                 }
               ]

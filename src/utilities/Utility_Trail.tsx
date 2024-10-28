@@ -46,6 +46,9 @@ export const Utility_Trail = ({
 }: Props_Utility_Trail) => {
   const [trail, setTrail] = useState<Payload_Trail[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+  const [previousImageIndex, setPreviousImageIndex] = useState<number | null>(
+    null
+  );
   const [lastSpawnPos, setLastSpawnPos] = useState<Payload_Coordinate>({
     x: 0,
     y: 0,
@@ -99,6 +102,18 @@ export const Utility_Trail = ({
         );
 
         if (distance >= 200) {
+          // Choose the next image index, ensuring it is not the same as the previous one
+          let nextImageIndex = currentImageIndex;
+
+          // Ensure we don't pick the same image twice in a row
+          if (preloadedImages.length > 1) {
+            while (nextImageIndex === previousImageIndex) {
+              nextImageIndex = Math.floor(
+                Math.random() * preloadedImages.length
+              );
+            }
+          }
+
           setTrail((prev) => [
             ...prev,
             {
@@ -107,10 +122,11 @@ export const Utility_Trail = ({
                 y: clientY,
               },
               id: generateUniqueHash(),
-              index: currentImageIndex,
+              index: nextImageIndex,
             },
           ]);
-          setCurrentImageIndex((prev) => (prev + 1) % preloadedImages.length);
+          setPreviousImageIndex(nextImageIndex); // Update previous index
+          setCurrentImageIndex(nextImageIndex); // Set the new image index
           setLastSpawnPos({ x: clientX, y: clientY });
         }
       }
@@ -123,6 +139,7 @@ export const Utility_Trail = ({
     lastSpawnPos,
     preloadedImages.length,
     currentImageIndex,
+    previousImageIndex,
     loadingComplete,
   ]);
 

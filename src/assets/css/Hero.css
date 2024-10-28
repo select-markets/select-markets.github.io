@@ -4,18 +4,3 @@
   width: 100vw;
   overflow: hidden;
 }
-
-[data-component="Component_Hero"] .hover_container {
-  position: absolute;
-  bottom: 0;
-  height: 80vh;
-  width: 100vw;
-}
-
-[data-component="Component_Hero"] .canvas_container {
-  position: absolute;
-  bottom: 0;
-  height: 100vh;
-  width: 100vw;
-  pointer-events: none;
-}

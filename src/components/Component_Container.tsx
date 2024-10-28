@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Component_Generic from "./Component_Generic";
+import "../assets/css/Container.css";
 
 export const Component_Container = ({
   data,

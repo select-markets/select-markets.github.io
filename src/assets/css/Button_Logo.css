@@ -5,6 +5,8 @@
   align-items: center;
   z-index: 1;
   cursor: pointer;
+  height: 100%;
+  width: 20%;
 }
 
 [data-component="Component_Button_Logo"] {
@@ -39,9 +41,9 @@
 
 [data-component="Component_Button_Logo"] .title_container .title_up h1,
 [data-component="Component_Button_Logo"] .title_container .title_down h1 {
-  height: 160px;
+  height: 140px;
   font-family: "Madloud", sans-serif;
-  font-size: 180px;
+  font-size: 100px;
   font-weight: 900;
   margin: 0 -6px;
   transition: 0.3s all ease;
@@ -52,6 +54,8 @@
   -webkit-background-clip: text;
   color: transparent;
   animation: shimmer 10s infinite ease-in-out;
+
+  will-change: transform;
 }
 
 [data-component="Component_Button_Logo"] .title_container .title_up.hovered h1,
@@ -69,7 +73,7 @@
 }
 
 [data-component="Component_Button_Logo"] .title_container .title_down.hovered {
-  transform: translateY(120px);
+  transform: translateY(100px);
 }
 
 [data-component="Component_Button_Logo"] [data-component="Component_Text"] {

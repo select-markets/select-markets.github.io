@@ -40,6 +40,7 @@ export const Component_Loader = ({
   };
 
   useEffect(() => {
+    console.log(currentlyLoading);
     if (currentlyLoading.size > 0) {
       document.body.style.cursor = "wait";
 
