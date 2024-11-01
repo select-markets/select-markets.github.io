@@ -53,13 +53,26 @@ export const Component_Container_Scroll = ({
     if (assets.length > 0) onFinishLoad();
   }, [assets, onFinishLoad]);
 
+  // Debounce function for smooth progress update
+  const debounce = (func: Function, delay: number) => {
+    let timer: ReturnType<typeof setTimeout>;
+    return (...args: any[]) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => func(...args), delay);
+    };
+  };
+
+  const updateScrollProgress = debounce((progress: number) => {
+    setScrollProgress(progress);
+  }, 50);
+
   const handleScroll = useCallback(() => {
     if (containerRef.current && data.json.content.text) {
       const scrollPosition = containerRef.current.scrollTop;
       const scrollHeight =
         containerRef.current.scrollHeight - containerRef.current.clientHeight;
       const progress = (scrollPosition / scrollHeight) * 100;
-      setScrollProgress(progress);
+      updateScrollProgress(progress);
 
       const blurbInterval = 100 / data.json.content.text.length;
       const newBlurbIndex = Math.floor(progress / blurbInterval);
@@ -87,7 +100,7 @@ export const Component_Container_Scroll = ({
         setVisibleAssets(newVisibleAssets);
       }
     }
-  }, [assets, visibleAssets, currentBlurbIndex]);
+  }, [assets, visibleAssets, currentBlurbIndex, updateScrollProgress]);
 
   useEffect(() => {
     if (!isAtTop) setVisibleAssets(new Set());

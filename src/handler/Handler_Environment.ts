@@ -1,5 +1,4 @@
 import Handler_Event from "./Handler_Event";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 export default class Handler_Environment {
   private static instance: Handler_Environment;
@@ -89,20 +88,10 @@ export default class Handler_Environment {
 
   private static loadAsset(url: string): Promise<void> {
     return new Promise((resolve, reject) => {
-      const loader = new GLTFLoader();
-      const isModel = url.endsWith(".glb") || url.endsWith(".gltf");
-      const isImage = url.endsWith(".jpg") || url.endsWith(".png");
-
-      if (isModel) {
-        loader.load(url, () => resolve(), undefined, reject);
-      } else if (isImage) {
-        const image = new Image();
-        image.src = url;
-        image.onload = () => resolve();
-        image.onerror = reject;
-      } else {
-        reject(`Unknown asset type for url: ${url}`);
-      }
+      const image = new Image();
+      image.src = url;
+      image.onload = () => resolve();
+      image.onerror = reject;
     });
   }
 

@@ -48,7 +48,7 @@
             "enabled": true,
             "loadable": false,
             "content": {
-              "key_page": "Home",
+              "key_page": "",
               "functions": {
                 "mount": [
                   "function.common.subscribe",
@@ -311,7 +311,7 @@
                                   "mount": ["function.common.subscribe"],
                                   "unmount": ["function.common.unsubscribe"]
                                 },
-                                "text": ["test"]
+                                "text": ["Scroll"]
                               }
                             }
                           ]

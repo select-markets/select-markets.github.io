@@ -70,7 +70,7 @@ export const Component_App_Router = ({ data }: Props_Component_Rendered) => {
                 />
               );
             })}
-            <Route path="*" element={<Navigate to="/Home" replace />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

@@ -1,8 +1,8 @@
 import { memo, useEffect, useState } from "react";
 import jsonEqual from "../helper/jsonEqual";
-import { Utility_Model_Float } from "../utilities/Utility_Model_Float";
+import { Utility_Model_Float } from "./Utility_Model_Float";
 import "../assets/css/Button_Model.css";
-import { Component_Button_Logo } from "./Component_Button_Logo";
+import { Component_Button_Logo } from "../components/Component_Button_Logo";
 
 const MemoizedModel = memo(Utility_Model_Float);
 
