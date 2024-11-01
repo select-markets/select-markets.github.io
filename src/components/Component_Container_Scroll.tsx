@@ -14,11 +14,26 @@ export const Component_Container_Scroll = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isAtTop, setIsAtTop] = useState(false);
   const [visibleAssets, setVisibleAssets] = useState<Set<number>>(new Set());
-  const [scrollProgress, setScrollProgress] = useState(0); // Track scroll progress
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [currentBlurbIndex, setCurrentBlurbIndex] = useState(0);
 
-  const parseAssetsResults = useCallback((result_assets: Payload_Result) => {
-    setAssets(result_assets.data);
+  // Preload all asset images
+  const preloadImages = useCallback((assets: Asset[]) => {
+    assets.forEach((asset) => {
+      if (asset.url) {
+        const img = new Image();
+        img.src = asset.url;
+      }
+    });
   }, []);
+
+  const parseAssetsResults = useCallback(
+    (result_assets: Payload_Result) => {
+      setAssets(result_assets.data);
+      preloadImages(result_assets.data); // Preload images once assets are parsed
+    },
+    [preloadImages]
+  );
 
   const gatherAssets = useCallback(() => {
     const keyArray =
@@ -60,12 +75,23 @@ export const Component_Container_Scroll = ({
       const scrollHeight =
         containerRef.current.scrollHeight - containerRef.current.clientHeight;
       const progress = (scrollPosition / scrollHeight) * 100;
-      setScrollProgress(progress); // Update progress
+      setScrollProgress(progress);
+
+      const blurbInterval = 100 / blurbText.length;
+      const newBlurbIndex = Math.floor(progress / blurbInterval);
+      if (
+        newBlurbIndex !== currentBlurbIndex &&
+        newBlurbIndex < blurbText.length
+      ) {
+        setCurrentBlurbIndex(newBlurbIndex);
+      }
 
       const newVisibleAssets = new Set<number>();
-
       assets.forEach((_, index) => {
-        if (scrollPosition >= index * 200) {
+        if (
+          containerRef.current &&
+          scrollPosition >= index * 200 - containerRef.current.clientHeight / 2
+        ) {
           newVisibleAssets.add(index);
         }
       });
@@ -77,7 +103,7 @@ export const Component_Container_Scroll = ({
         setVisibleAssets(newVisibleAssets);
       }
     }
-  }, [assets, isAtTop, visibleAssets]);
+  }, [assets, isAtTop, visibleAssets, currentBlurbIndex]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -103,7 +129,12 @@ export const Component_Container_Scroll = ({
   }, [handleScroll]);
 
   const rotations = useMemo(
-    () => assets.map(() => (Math.random() - 0.5) * 20), // Random rotation between -10 and 10 degrees
+    () => assets.map(() => (Math.random() - 0.5) * 20),
+    [assets.length]
+  );
+
+  const heights = useMemo(
+    () => assets.map(() => Math.random() * 20),
     [assets.length]
   );
 
@@ -130,13 +161,24 @@ export const Component_Container_Scroll = ({
               className={`image-container ${positionClass} ${
                 visibleAssets.has(index) ? "pop-in" : "pop-out"
               }`}
-              style={{ transform: `rotate(${rotations[index]}deg)` }}
+              style={{
+                height: `calc(27.5vh + ${heights[index]}px)`,
+                opacity: visibleAssets.has(index) ? 1 : 0,
+              }}
             >
-              <img src={asset.url} alt={`Asset ${index}`} />
+              <img
+                src={asset.url}
+                style={{
+                  transform: `rotate(${rotations[index]}deg) scale(${
+                    visibleAssets.has(index) ? 1 : 0.5
+                  })`,
+                }}
+                alt={`Asset ${index}`}
+              />
             </div>
           );
         })}
-        <h1 className="blurb-text">{blurbText[0]}</h1>
+        <h1 className={`blurb-text`}>{blurbText[currentBlurbIndex]}</h1>
       </div>
       <div className="progress-bar-container">
         <div className="progress-bar" style={{ width: `${scrollProgress}%` }} />
