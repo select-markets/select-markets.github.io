@@ -54,9 +54,8 @@ export const Component_Container_Scroll = ({
   }, [assets, onFinishLoad]);
 
   const handleScroll = useCallback(() => {
-    if (containerRef.current && isAtTop && data.json.content.text) {
+    if (containerRef.current && data.json.content.text) {
       const scrollPosition = containerRef.current.scrollTop;
-
       const scrollHeight =
         containerRef.current.scrollHeight - containerRef.current.clientHeight;
       const progress = (scrollPosition / scrollHeight) * 100;
@@ -88,7 +87,7 @@ export const Component_Container_Scroll = ({
         setVisibleAssets(newVisibleAssets);
       }
     }
-  }, [assets, isAtTop, visibleAssets, currentBlurbIndex]);
+  }, [assets, visibleAssets, currentBlurbIndex]);
 
   useEffect(() => {
     if (!isAtTop) setVisibleAssets(new Set());
@@ -116,6 +115,28 @@ export const Component_Container_Scroll = ({
       containerRef.current?.removeEventListener("scroll", handleScroll);
     };
   }, [handleScroll]);
+
+  // Custom wheel event to conditionally prevent scroll propagation
+  const handleWheel = (event: WheelEvent) => {
+    if (containerRef.current) {
+      if (isAtTop && containerRef.current.scrollTop > 0) {
+        event.preventDefault(); // Prevent the default scroll behavior when at the top
+        containerRef.current.scrollTop += event.deltaY;
+        handleScroll();
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.addEventListener("wheel", handleWheel, {
+        passive: false,
+      });
+    }
+    return () => {
+      containerRef.current?.removeEventListener("wheel", handleWheel);
+    };
+  }, [handleWheel, isAtTop]); // Re-run when isAtTop changes
 
   const rotations = useMemo(
     () => assets.map(() => (Math.random() - 0.5) * 20),
