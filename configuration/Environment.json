@@ -311,7 +311,7 @@
                                   "mount": ["function.common.subscribe"],
                                   "unmount": ["function.common.unsubscribe"]
                                 },
-                                "text": ["test"]
+                                "text": ["Scroll"]
                               }
                             }
                           ]
