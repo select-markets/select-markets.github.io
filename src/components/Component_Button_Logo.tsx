@@ -40,13 +40,13 @@ export const Component_Button_Logo = ({
         >
           <div className={`title_up ${hovered && "hovered"}`}>
             <Utility_Transformed_Text
-              text={data.json.content.text}
+              text={data.json.content.text[0]}
               hovered={hovered}
             />
           </div>
           <div className={`title_down ${hovered && "hovered"}`}>
             <Utility_Transformed_Text
-              text={data.json.content.text}
+              text={data.json.content.text[0]}
               hovered={hovered}
               invert={true}
             />

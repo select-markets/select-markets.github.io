@@ -89,7 +89,7 @@
                               "function.navigation.page.publish_vendor"
                             ]
                           },
-                          "text": "VENDOR",
+                          "text": ["VENDOR"],
                           "children": [
                             {
                               "key_component": "text",
@@ -100,7 +100,7 @@
                                   "mount": ["function.common.subscribe"],
                                   "unmount": ["function.common.unsubscribe"]
                                 },
-                                "text": "Vendor Form"
+                                "text": ["Vendor Form"]
                               }
                             }
                           ]
@@ -125,7 +125,7 @@
                               "function.navigation.page.publish_faq"
                             ]
                           },
-                          "text": "FAQ",
+                          "text": ["FAQ"],
                           "children": [
                             {
                               "key_component": "text",
@@ -136,7 +136,7 @@
                                   "mount": ["function.common.subscribe"],
                                   "unmount": ["function.common.unsubscribe"]
                                 },
-                                "text": "Frequently Asked Questions"
+                                "text": ["Frequently Asked Questions"]
                               }
                             }
                           ]
@@ -155,7 +155,7 @@
                               "function.navigation.page.publish_home"
                             ]
                           },
-                          "text": "SELECT",
+                          "text": ["SELECT"],
                           "children": [
                             {
                               "key_component": "text",
@@ -166,7 +166,7 @@
                                   "mount": ["function.common.subscribe"],
                                   "unmount": ["function.common.unsubscribe"]
                                 },
-                                "text": "Vintage Finds for Modern Minds"
+                                "text": ["Vintage Finds for Modern Minds"]
                               }
                             }
                           ]
@@ -191,7 +191,7 @@
                               "function.navigation.page.publish_about"
                             ]
                           },
-                          "text": "ABOUT",
+                          "text": ["ABOUT"],
                           "children": [
                             {
                               "key_component": "text",
@@ -202,7 +202,7 @@
                                   "mount": ["function.common.subscribe"],
                                   "unmount": ["function.common.unsubscribe"]
                                 },
-                                "text": "Who are we?"
+                                "text": ["Who are we?"]
                               }
                             }
                           ]
@@ -227,7 +227,7 @@
                               "function.navigation.page.publish_contact"
                             ]
                           },
-                          "text": "CONTACT",
+                          "text": ["CONTACT"],
                           "children": [
                             {
                               "key_component": "text",
@@ -238,7 +238,7 @@
                                   "mount": ["function.common.subscribe"],
                                   "unmount": ["function.common.unsubscribe"]
                                 },
-                                "text": "Talk to us"
+                                "text": ["Talk to us"]
                               }
                             }
                           ]
@@ -274,7 +274,7 @@
                             ]
                           },
                           "assets": [{ "key_asset": "hero_img_3" }],
-                          "text": "Vintage Finds for Modern Minds",
+                          "text": ["Vintage Finds for Modern Minds"],
                           "children": [
                             {
                               "key_component": "text_animated",
@@ -285,7 +285,7 @@
                                   "mount": ["function.common.subscribe"],
                                   "unmount": ["function.common.unsubscribe"]
                                 },
-                                "text": "SELECT"
+                                "text": ["SELECT"]
                               }
                             },
                             {
@@ -297,7 +297,9 @@
                                   "mount": ["function.common.subscribe"],
                                   "unmount": ["function.common.unsubscribe"]
                                 },
-                                "text": "<h1 style=\"display: flex; justify-content: center; align-items: center; width: 100%; margin: 0; color: white; text-align: center; text-shadow: 0 0 4px rgba(0, 0, 0, 1);\">Vintage Finds for Modern Minds.</h1>"
+                                "text": [
+                                  "<h1 style=\"display: flex; justify-content: center; align-items: center; width: 100%; margin: 0; color: white; text-align: center; text-shadow: 0 0 4px rgba(0, 0, 0, 1);\">Vintage Finds for Modern Minds.</h1>"
+                                ]
                               }
                             },
                             {
@@ -309,7 +311,7 @@
                                   "mount": ["function.common.subscribe"],
                                   "unmount": ["function.common.unsubscribe"]
                                 },
-                                "text": "test"
+                                "text": ["test"]
                               }
                             }
                           ]
@@ -330,6 +332,12 @@
                               "function.assets.unsubscribe"
                             ]
                           },
+                          "text": [
+                            "Discover Timeless Treasures in the Heart of Boston",
+                            "Where History Finds a New Home",
+                            "Curated Classics, Boston Charm",
+                            "Vintage Finds with a New England Soul"
+                          ],
                           "assets": [
                             { "key_asset": "hero_img_0" },
                             { "key_asset": "hero_img_1" },

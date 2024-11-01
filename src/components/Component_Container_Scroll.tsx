@@ -2,8 +2,6 @@ import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import jsonEqual from "../helper/jsonEqual";
 import "../assets/css/Container_Scroll.css";
 
-const blurbText = ["test1", "asdf", "poop"];
-
 export const Component_Container_Scroll = ({
   data,
   results,
@@ -17,23 +15,9 @@ export const Component_Container_Scroll = ({
   const [scrollProgress, setScrollProgress] = useState(0);
   const [currentBlurbIndex, setCurrentBlurbIndex] = useState(0);
 
-  // Preload all asset images
-  const preloadImages = useCallback((assets: Asset[]) => {
-    assets.forEach((asset) => {
-      if (asset.url) {
-        const img = new Image();
-        img.src = asset.url;
-      }
-    });
-  }, []);
-
-  const parseAssetsResults = useCallback(
-    (result_assets: Payload_Result) => {
-      setAssets(result_assets.data);
-      preloadImages(result_assets.data); // Preload images once assets are parsed
-    },
-    [preloadImages]
-  );
+  const parseAssetsResults = (result_assets: Payload_Result) => {
+    setAssets(result_assets.data);
+  };
 
   const gatherAssets = useCallback(() => {
     const keyArray =
@@ -70,18 +54,19 @@ export const Component_Container_Scroll = ({
   }, [assets, onFinishLoad]);
 
   const handleScroll = useCallback(() => {
-    if (containerRef.current && isAtTop) {
+    if (containerRef.current && isAtTop && data.json.content.text) {
       const scrollPosition = containerRef.current.scrollTop;
+
       const scrollHeight =
         containerRef.current.scrollHeight - containerRef.current.clientHeight;
       const progress = (scrollPosition / scrollHeight) * 100;
       setScrollProgress(progress);
 
-      const blurbInterval = 100 / blurbText.length;
+      const blurbInterval = 100 / data.json.content.text.length;
       const newBlurbIndex = Math.floor(progress / blurbInterval);
       if (
         newBlurbIndex !== currentBlurbIndex &&
-        newBlurbIndex < blurbText.length
+        newBlurbIndex < data.json.content.text.length
       ) {
         setCurrentBlurbIndex(newBlurbIndex);
       }
@@ -104,6 +89,10 @@ export const Component_Container_Scroll = ({
       }
     }
   }, [assets, isAtTop, visibleAssets, currentBlurbIndex]);
+
+  useEffect(() => {
+    if (!isAtTop) setVisibleAssets(new Set());
+  }, [isAtTop]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -138,7 +127,7 @@ export const Component_Container_Scroll = ({
     [assets.length]
   );
 
-  return assets.length > 0 ? (
+  return assets.length > 0 && data.json.content.text ? (
     <div
       data-component="Component_Container_Scroll"
       data-css={data.json.content.key_css}
@@ -178,7 +167,9 @@ export const Component_Container_Scroll = ({
             </div>
           );
         })}
-        <h1 className={`blurb-text`}>{blurbText[currentBlurbIndex]}</h1>
+        <h1 className={`blurb-text`}>
+          {data.json.content.text[currentBlurbIndex]}
+        </h1>
       </div>
       <div className="progress-bar-container">
         <div className="progress-bar" style={{ width: `${scrollProgress}%` }} />

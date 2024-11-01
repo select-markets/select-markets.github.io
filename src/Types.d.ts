@@ -71,7 +71,7 @@ interface Data_Component_Generic {
       lifecycle?: string[];
     };
     children?: Data_Component_Generic[];
-    text?: string;
+    text?: string[];
     assets?: Asset[];
   };
 }

@@ -29,7 +29,7 @@ export const Component_Button = ({
         onClick={() => data.handleLifecycle({ input: data.json })}
         data-key={data.key_call}
       >
-        <Utility_Display_HTML html={data.json.content.text} />
+        <Utility_Display_HTML html={data.json.content.text[0]} />
       </button>
     );
 };

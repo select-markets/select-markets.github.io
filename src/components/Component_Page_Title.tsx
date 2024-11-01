@@ -14,15 +14,16 @@ export const Component_Page_Title = ({
     onFinishLoad();
   }, []);
 
-  return (
-    <h1
-      data-component="Component_Page_Title"
-      data-css={data.json.content.key_css}
-      data-key={data.key_call}
-    >
-      <Utility_Display_HTML
-        html={JSON.stringify(data.json.content.translations)}
-      />
-    </h1>
-  );
+  if (data.json.content.text)
+    return (
+      <h1
+        data-component="Component_Page_Title"
+        data-css={data.json.content.key_css}
+        data-key={data.key_call}
+      >
+        <Utility_Display_HTML
+          html={JSON.stringify(data.json.content.text[0])}
+        />
+      </h1>
+    );
 };

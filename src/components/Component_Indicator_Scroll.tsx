@@ -29,7 +29,7 @@ export const Component_Indicator_Scroll = ({
         onClick={() => data.handleLifecycle({ input: data.json })}
         data-key={data.key_call}
       >
-        {data.json.content.text}
+        {data.json.content.text[0]}
       </div>
     );
 };

@@ -42,7 +42,7 @@ export const Component_Text = ({
       data-css={data.json.content.key_css}
       data-key={data.key_call}
     >
-      <Utility_Display_HTML html={data.json.content.text} />
+      <Utility_Display_HTML html={(data.json.content.text as string[])[0]} />
     </div>
   );
 };
