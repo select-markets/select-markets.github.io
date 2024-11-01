@@ -14,6 +14,7 @@ export const Component_Container_Scroll = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isAtTop, setIsAtTop] = useState(false);
   const [visibleAssets, setVisibleAssets] = useState<Set<number>>(new Set());
+  const [scrollProgress, setScrollProgress] = useState(0); // Track scroll progress
 
   const parseAssetsResults = useCallback((result_assets: Payload_Result) => {
     setAssets(result_assets.data);
@@ -56,16 +57,19 @@ export const Component_Container_Scroll = ({
   const handleScroll = useCallback(() => {
     if (containerRef.current && isAtTop) {
       const scrollPosition = containerRef.current.scrollTop;
+      const scrollHeight =
+        containerRef.current.scrollHeight - containerRef.current.clientHeight;
+      const progress = (scrollPosition / scrollHeight) * 100;
+      setScrollProgress(progress); // Update progress
+
       const newVisibleAssets = new Set<number>();
 
-      // Track which assets should be visible based on scroll position
       assets.forEach((_, index) => {
         if (scrollPosition >= index * 200) {
           newVisibleAssets.add(index);
         }
       });
 
-      // Update visibleAssets only if they have changed
       if (
         newVisibleAssets.size !== visibleAssets.size ||
         [...newVisibleAssets].some((index) => !visibleAssets.has(index))
@@ -98,7 +102,6 @@ export const Component_Container_Scroll = ({
     };
   }, [handleScroll]);
 
-  // Memoize random rotations for each asset
   const rotations = useMemo(
     () => assets.map(() => (Math.random() - 0.5) * 20), // Random rotation between -10 and 10 degrees
     [assets.length]
@@ -134,6 +137,9 @@ export const Component_Container_Scroll = ({
           );
         })}
         <h1 className="blurb-text">{blurbText[0]}</h1>
+      </div>
+      <div className="progress-bar-container">
+        <div className="progress-bar" style={{ width: `${scrollProgress}%` }} />
       </div>
       <div
         className="container-scroll"
