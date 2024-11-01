@@ -51,7 +51,11 @@ export const Component_Hero = ({
   }, []);
 
   useEffect(() => {
-    if (assets.length > 0) onFinishLoad();
+    if (assets.length > 0) {
+      const img = new Image();
+      img.src = assets[0].url as string;
+      img.onload = () => onFinishLoad();
+    }
   }, [assets]);
 
   if (assets.length > 0)
@@ -61,6 +65,9 @@ export const Component_Hero = ({
         data-css={data.json.content.key_css}
         onClick={() => data.handleLifecycle}
         data-key={data.key_call}
+        style={{
+          backgroundImage: `url(${assets[0].url})`,
+        }}
       >
         {data.json.content.children &&
           data.json.content.children.map(

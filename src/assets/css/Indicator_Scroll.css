@@ -1,0 +1,9 @@
+[data-component="Component_Indicator_Scroll"] {
+  position: absolute;
+  background-color: #e61171;
+  height: 100px;
+  width: 100px;
+  bottom: 5%;
+
+  border-radius: 50%;
+}

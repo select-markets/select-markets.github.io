@@ -10,7 +10,7 @@ export const Utility_Display_HTML = ({ html }: Props_Utility_Display_HTML) => {
     if (input) {
       var txt = document.createElement("textarea");
       txt.innerHTML = input;
-      return decodeURIComponent(txt.value);
+      return txt.value; // Removed decodeURIComponent
     } else return "";
   };
 

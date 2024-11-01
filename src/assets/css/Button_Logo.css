@@ -41,14 +41,14 @@
 
 [data-component="Component_Button_Logo"] .title_container .title_up h1,
 [data-component="Component_Button_Logo"] .title_container .title_down h1 {
-  height: 140px;
+  height: 10vh;
   font-family: "Madloud", sans-serif;
-  font-size: 100px;
+  font-size: calc(3vw + 3vh);
   font-weight: 900;
-  margin: 0 -6px;
+  margin: 0 calc(- (0.5vw + 0.5vh));
   transition: 0.3s all ease;
 
-  background: linear-gradient(45deg, #ff3e9e, #ff7717eb, #9c54f5, #ffaf25);
+  background: linear-gradient(45deg, #3ebeff, #ff3e9e, #9c54f5);
   background-size: 200% 200%;
 
   -webkit-background-clip: text;
@@ -63,9 +63,9 @@
   .title_container
   .title_down.hovered
   h1 {
-  margin: 0 10px;
+  margin: 0 calc(0.1vw + 0.1vh);
   pointer-events: none;
-  font-size: 60px;
+  font-size: calc(2vw + 2vh);
 }
 
 [data-component="Component_Button_Logo"] .title_container .title_up.hovered {
@@ -73,14 +73,14 @@
 }
 
 [data-component="Component_Button_Logo"] .title_container .title_down.hovered {
-  transform: translateY(100px);
+  transform: translateY(12vh);
 }
 
 [data-component="Component_Button_Logo"] [data-component="Component_Text"] {
   opacity: 0;
   transition: 0.3s all ease;
-  font-size: 20px;
-  letter-spacing: -2px;
+  font-size: calc(0.7vw + 0.7vh);
+  letter-spacing: calc(- (0.2vw + 0.2vh));
   color: #969897;
 }
 
@@ -95,4 +95,12 @@
   justify-content: center;
   align-items: center;
   pointer-events: none;
+  margin-top: 5vh;
+}
+
+[data-component="Component_Button_Logo"]
+  .content_container
+  [data-component="Component_Text"] {
+  margin: 0;
+  text-align: center;
 }

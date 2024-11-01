@@ -1,12 +1,45 @@
+[data-component="Component_Text_Animated"] {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 400px;
+  overflow: hidden;
+}
+
 [data-component="Component_Text_Animated"] .animated_text {
+  display: inline-block;
+  font-size: calc(10vw + 10vh);
+  font-weight: bolder;
+  letter-spacing: -0.6rem;
+}
+
+[data-component="Component_Text_Animated"] .letter-container {
   position: relative;
   display: inline-block;
-  font-size: 2rem; /* Adjust as needed */
 }
 
 [data-component="Component_Text_Animated"] .letter {
   display: inline-block;
-  opacity: 0; /* Initially hidden */
-  transform: translateY(100%); /* Start off-screen */
-  transition: transform 0.5s ease, color 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+[data-component="Component_Text_Animated"] .letter.appear {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-component="Component_Text_Animated"] .colored-copy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+[data-component="Component_Text_Animated"] .colored-copy.appear {
+  opacity: 1;
+  transform: translateY(0);
 }

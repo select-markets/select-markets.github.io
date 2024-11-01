@@ -273,6 +273,63 @@
                               "function.assets.unsubscribe"
                             ]
                           },
+                          "assets": [{ "key_asset": "hero_img_3" }],
+                          "text": "Vintage Finds for Modern Minds",
+                          "children": [
+                            {
+                              "key_component": "text_animated",
+                              "enabled": true,
+                              "loadable": false,
+                              "content": {
+                                "functions": {
+                                  "mount": ["function.common.subscribe"],
+                                  "unmount": ["function.common.unsubscribe"]
+                                },
+                                "text": "SELECT"
+                              }
+                            },
+                            {
+                              "key_component": "text",
+                              "enabled": true,
+                              "loadable": false,
+                              "content": {
+                                "functions": {
+                                  "mount": ["function.common.subscribe"],
+                                  "unmount": ["function.common.unsubscribe"]
+                                },
+                                "text": "<h1 style=\"display: flex; justify-content: center; align-items: center; width: 100%; margin: 0; color: white; text-align: center; text-shadow: 0 0 4px rgba(0, 0, 0, 1);\">Vintage Finds for Modern Minds.</h1>"
+                              }
+                            },
+                            {
+                              "key_component": "indicator_scroll",
+                              "enabled": true,
+                              "loadable": false,
+                              "content": {
+                                "functions": {
+                                  "mount": ["function.common.subscribe"],
+                                  "unmount": ["function.common.unsubscribe"]
+                                },
+                                "text": "test"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "key_component": "container_scroll",
+                        "enabled": true,
+                        "loadable": true,
+                        "content": {
+                          "functions": {
+                            "mount": [
+                              "function.common.subscribe",
+                              "function.assets.subscribe"
+                            ],
+                            "unmount": [
+                              "function.common.unsubscribe",
+                              "function.assets.unsubscribe"
+                            ]
+                          },
                           "assets": [
                             { "key_asset": "hero_img_0" },
                             { "key_asset": "hero_img_1" },
@@ -305,22 +362,6 @@
                             { "key_asset": "hero_img_28" },
                             { "key_asset": "hero_img_29" },
                             { "key_asset": "hero_img_30" }
-                          ],
-                          "text": "Vintage Finds for Modern Minds",
-                          "children": [
-                            {
-                              "key_component": "text_animated",
-                              "enabled": true,
-                              "loadable": false,
-                              "content": {
-                                "key_page": "FAQ",
-                                "functions": {
-                                  "mount": ["function.common.subscribe"],
-                                  "unmount": ["function.common.unsubscribe"]
-                                },
-                                "text": "SELECT"
-                              }
-                            }
                           ]
                         }
                       }
@@ -412,10 +453,6 @@
     "modals": [],
     "notices": [],
     "assets": [
-      { "key_asset": "header_model_about", "url": "assets/models/plane.glb" },
-      { "key_asset": "header_model_contact", "url": "assets/models/cloud.glb" },
-      { "key_asset": "header_model_faq", "url": "assets/models/ship.glb" },
-      { "key_asset": "header_model_vendor", "url": "assets/models/moon.glb" },
       { "key_asset": "hero_img_0", "url": "assets/images/select-0.jpg" },
       { "key_asset": "hero_img_1", "url": "assets/images/select-1.jpg" },
       { "key_asset": "hero_img_2", "url": "assets/images/select-2.jpg" },

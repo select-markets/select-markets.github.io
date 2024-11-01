@@ -4,8 +4,8 @@
   flex-direction: row;
   position: fixed;
   justify-content: space-between;
-  padding: 20px 60px;
-  height: 180px;
+  padding: 5vh 10vw;
+  height: 20vh;
   align-items: center;
   z-index: 2;
 }
@@ -19,7 +19,7 @@
 [data-component="Component_Header"] [data-component="Component_Button_Logo"] {
   opacity: 0;
   transform: scale(0);
-  animation: popIn 0.5s ease-out forwards;
+  animation: popIn 1s ease-out forwards;
 }
 
 @keyframes popIn {
@@ -28,8 +28,12 @@
     transform: scale(0);
   }
   50% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  75% {
     opacity: 1;
-    transform: scale(1.2);
+    transform: scale(1.4);
   }
   100% {
     opacity: 1;

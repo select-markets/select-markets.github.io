@@ -1,4 +1,5 @@
 import Handler_Event from "./Handler_Event";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 export default class Handler_Environment {
   private static instance: Handler_Environment;
@@ -58,6 +59,8 @@ export default class Handler_Environment {
         }
       );
 
+      await this.assetsPreLoad(handler_environment.environment);
+
       return true;
     } catch {
       // Use Error_Handler to notify about the initialization error
@@ -71,6 +74,36 @@ export default class Handler_Environment {
 
   private notifyLog(log: Payload_Log) {
     this.handler_event.publish("log", log);
+  }
+
+  private static async assetsPreLoad(environment: any) {
+    const assetPromises = environment.subscriber_content.assets.map(
+      (asset: Asset) => {
+        if (asset.url) return this.loadAsset(asset.url);
+      }
+    );
+
+    await Promise.all(assetPromises);
+    console.log("All assets preloaded successfully.");
+  }
+
+  private static loadAsset(url: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const loader = new GLTFLoader();
+      const isModel = url.endsWith(".glb") || url.endsWith(".gltf");
+      const isImage = url.endsWith(".jpg") || url.endsWith(".png");
+
+      if (isModel) {
+        loader.load(url, () => resolve(), undefined, reject);
+      } else if (isImage) {
+        const image = new Image();
+        image.src = url;
+        image.onload = () => resolve();
+        image.onerror = reject;
+      } else {
+        reject(`Unknown asset type for url: ${url}`);
+      }
+    });
   }
 
   public sanitizedObjectLookUp(payload: Payload_Environment_Sanitized) {

@@ -22,6 +22,8 @@ import { Component_Button_Logo } from "./Component_Button_Logo";
 import { Component_Hero } from "./Component_Hero";
 import { Component_Button_Model } from "./Component_Button_Model";
 import { Component_Text_Animated } from "./Component_Text_Animated";
+import { Component_Indicator_Scroll } from "./Component_Indicator_Scroll";
+import { Component_Container_Scroll } from "./Component_Container_Scroll";
 
 const Component_Map: Record<
   string,
@@ -33,8 +35,10 @@ const Component_Map: Record<
   button_logo: Component_Button_Logo,
   button_model: Component_Button_Model,
   container: Component_Container, // generic container that can be manipulated via css that can hold other components
+  container_scroll: Component_Container_Scroll,
   header: Component_Header,
   hero: Component_Hero,
+  indicator_scroll: Component_Indicator_Scroll,
   loader: Component_Loader, // background component to hold loading logic
   modal_pseudo: Component_Modal_Pseudo, // component used to render modals that can hold other components
   page: Component_Page, // component for a page that can hold other components
@@ -135,7 +139,6 @@ const Component_Generic = ({ data }: Props_Component_Generic) => {
   }, [key_call]);
 
   function onFinishLoad() {
-    console.log(key_call);
     if (data.loadable)
       handler_event.publish("load", {
         key_call: key_call,

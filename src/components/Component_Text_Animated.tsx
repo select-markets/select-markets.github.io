@@ -2,17 +2,12 @@ import { useEffect, useState } from "react";
 import jsonEqual from "../helper/jsonEqual";
 import "../assets/css/Text_Animated.css";
 
-const colors = ["#ff3e9e", "#ff7717eb", "#9c54f5", "#ffaf25", "black"];
-
 export const Component_Text_Animated = ({
   data,
   results,
   onFinishLoad,
 }: Props_Component_Rendered) => {
   const [lastResults, setLastResults] = useState<any>();
-  const [letterStyles, setLetterStyles] = useState<{
-    [key: number]: React.CSSProperties;
-  }>({});
 
   const parseAPIResults = (result_api: Payload_Result) => {
     // Handle the API result logic based on key_api
@@ -43,30 +38,22 @@ export const Component_Text_Animated = ({
   }, [results, lastResults]);
 
   useEffect(() => {
-    const animateLetters = () => {
-      const newStyles: { [key: number]: React.CSSProperties } = {};
-      (data.json.content.text as string).split("").forEach((_, index) => {
-        colors.forEach((color, waveIndex) => {
-          setTimeout(() => {
-            newStyles[index] = {
-              opacity: "1",
-              transform: "translateY(0)",
-              transition: `transform 0.5s ease ${
-                index * 0.1
-              }s, color 0.5s ease ${index * 0.1}s`,
-              color: color,
-            };
-            setLetterStyles((prevStyles) => ({
-              ...prevStyles,
-              ...newStyles,
-            }));
-          }, waveIndex * 500 + index * 100);
-        });
-      });
-    };
-    animateLetters();
     onFinishLoad();
+  }, [data.json.content.text, onFinishLoad]);
+
+  useEffect(() => {
+    const letters = document.querySelectorAll(
+      '[data-component="Component_Text_Animated"] .letter, [data-component="Component_Text_Animated"] .colored-copy'
+    );
+    letters.forEach((letter, index) => {
+      const delay = (index + 1) * 50;
+      setTimeout(() => {
+        letter.classList.add("appear");
+      }, delay);
+    });
   }, [data.json.content.text]);
+
+  const colors = ["white", "#3ebeff", "#e61171"];
 
   return (
     <div
@@ -74,17 +61,33 @@ export const Component_Text_Animated = ({
       data-css={data.json.content.key_css}
       data-key={data.key_call}
     >
-      <h1 className="animated_text">
+      <div className="animated_text">
         {(data.json.content.text as string).split("").map((letter, index) => (
-          <span
-            key={index}
-            className="letter color-wave"
-            style={letterStyles[index]}
-          >
-            {letter}
+          <span key={index} className="letter-container">
+            <span
+              className="letter"
+              style={{
+                transitionDelay: `${index * 0.1}s`,
+                color: colors[0],
+              }}
+            >
+              {letter}
+            </span>
+            {colors.slice(1).map((color, colorIndex) => (
+              <span
+                key={`${index}-${colorIndex}`}
+                className="colored-copy"
+                style={{
+                  transitionDelay: `${index * 0.1 + 0.1 * (colorIndex + 1)}s`,
+                  color: color,
+                }}
+              >
+                {letter}
+              </span>
+            ))}
           </span>
         ))}
-      </h1>
+      </div>
     </div>
   );
 };

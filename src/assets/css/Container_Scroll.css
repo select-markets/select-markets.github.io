@@ -1,0 +1,32 @@
+[data-component="Component_Container_Scroll"] {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-scroll {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.animation-container {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.scroller {
+  height: 2000px;
+  width: 100vw;
+}
