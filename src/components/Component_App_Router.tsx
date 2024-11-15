@@ -15,7 +15,7 @@ import Page_FAQ from "../pages/Page_FAQ";
 import Page_Red_Eye from "../pages/Page_Red_Eye";
 import Page_Vendor from "../pages/Page_Vendor";
 import Page_Landing from "../pages/Page_Landing";
-import Page_Contact from "../pages/Page_Red_Eye copy";
+import Page_Contact from "../pages/Page_Contact";
 
 // JSON map for route configuration
 const routeConfig = [

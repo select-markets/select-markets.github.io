@@ -1,0 +1,42 @@
+.about-container {
+  padding: 3rem;
+  background: #f7f0f5;
+  border-radius: 12px;
+  margin: 2rem auto;
+  max-width: 1200px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.about-container h1 {
+  font-size: 3rem;
+  color: #e61171;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-family: "Helvetica Neue", sans-serif;
+}
+
+.team-photos {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.team-member {
+  text-align: center;
+  width: 200px;
+}
+
+.team-member img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.team-member p {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+}

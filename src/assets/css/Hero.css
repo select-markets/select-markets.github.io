@@ -10,9 +10,14 @@
   justify-content: flex-start;
   align-items: center;
   padding-top: 20vh;
-  background-image: url("/assets/images/select-3.jpg");
   flex: 0 0 auto;
   min-height: 100vh;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 1.2s ease-in-out; /* Smooth fade-in */
+}
+
+[data-component="Component_Hero"].fade-in {
+  opacity: 1; /* Fade in when image is loaded */
 }
 
 [data-component="Component_Hero"] .blurb {
