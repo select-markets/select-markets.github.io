@@ -138,7 +138,6 @@ export const Component_Section_Scroll = () => {
   ]);
 
   useEffect(() => {
-    console.log(isAtTop);
     if (!isAtTop) setVisibleAssets(new Set());
   }, [isAtTop]);
 
