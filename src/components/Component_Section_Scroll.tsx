@@ -1,59 +1,75 @@
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
-import jsonEqual from "../helper/jsonEqual";
 import "../assets/css/Container_Scroll.css";
 
-export const Component_Container_Scroll = ({
-  data,
-  results,
-  onFinishLoad,
-}: Props_Component_Rendered) => {
-  const [lastResults, setLastResults] = useState<any>();
-  const [assets, setAssets] = useState<Asset[]>([]);
+const assets = [
+  { url: "/assets/images/select-0.jpg" },
+  { url: "/assets/images/select-1.jpg" },
+  { url: "/assets/images/select-2.jpg" },
+  { url: "/assets/images/select-4.jpg" },
+  { url: "/assets/images/select-5.jpg" },
+  { url: "/assets/images/select-6.jpg" },
+  { url: "/assets/images/select-7.jpg" },
+  { url: "/assets/images/select-8.jpg" },
+  { url: "/assets/images/select-9.jpg" },
+  { url: "/assets/images/select-10.jpg" },
+  { url: "/assets/images/select-11.jpg" },
+  { url: "/assets/images/select-12.jpg" },
+  { url: "/assets/images/select-13.jpg" },
+  { url: "/assets/images/select-14.jpg" },
+  { url: "/assets/images/select-15.jpg" },
+  { url: "/assets/images/select-16.jpg" },
+  { url: "/assets/images/select-17.jpg" },
+  { url: "/assets/images/select-18.jpg" },
+  { url: "/assets/images/select-19.jpg" },
+  { url: "/assets/images/select-20.jpg" },
+  { url: "/assets/images/select-21.jpg" },
+  { url: "/assets/images/select-22.jpg" },
+  { url: "/assets/images/select-23.jpg" },
+  { url: "/assets/images/select-24.jpg" },
+  { url: "/assets/images/select-25.jpg" },
+  { url: "/assets/images/select-26.jpg" },
+  { url: "/assets/images/select-27.jpg" },
+  { url: "/assets/images/select-28.jpg" },
+  { url: "/assets/images/select-29.jpg" },
+  { url: "/assets/images/select-30.jpg" },
+];
+
+const text = [
+  "Boston's best vintage finds, all at Select Markets. Don’t miss out!",
+  "Select Markets: Where unique style and local vibes collide.",
+  "Revamp your wardrobe with Select Markets’ one-of-a-kind pop-ups!",
+  "Shop Boston’s coolest vintage at Select Markets. Style starts here.",
+];
+
+export const Component_Section_Scroll = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isAtTop, setIsAtTop] = useState(false);
   const [visibleAssets, setVisibleAssets] = useState<Set<number>>(new Set());
   const [scrollProgress, setScrollProgress] = useState(0);
   const [currentBlurbIndex, setCurrentBlurbIndex] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
-  const parseAssetsResults = (result_assets: Payload_Result) => {
-    setAssets(result_assets.data);
-  };
-
-  const gatherAssets = useCallback(() => {
-    const keyArray =
-      data.json.content.assets?.map((asset: Asset) => asset.key_asset) || [];
-    data.handler_event.publish("environment_call", {
-      key_call: data.key_call,
-      fallback: [],
-      path: ["subscriber_content", "assets"],
-      key_environment: keyArray,
-    });
-  }, [data]);
-
-  const parseResults = useCallback(() => {
-    const result_assets: Payload_Result =
-      data.handler_function.extractDataFromResult(
-        "environment_answer",
-        results,
-        data.key_call
-      );
-    if (result_assets) parseAssetsResults(result_assets);
-    setLastResults(results);
-  }, [results, data.key_call, parseAssetsResults]);
-
+  // Preload all images
   useEffect(() => {
-    gatherAssets();
-  }, [gatherAssets]);
+    const preloadImages = () => {
+      const promises = assets.map((asset) => {
+        return new Promise<void>((resolve, reject) => {
+          const img = new Image();
+          img.src = asset.url;
+          img.onload = () => resolve();
+          img.onerror = () =>
+            reject(new Error(`Failed to load image: ${asset.url}`));
+        });
+      });
 
-  useEffect(() => {
-    if (!jsonEqual(results, lastResults)) parseResults();
-  }, [results, lastResults, parseResults]);
+      Promise.all(promises)
+        .then(() => setImagesLoaded(true))
+        .catch((error) => console.error("Error preloading images", error));
+    };
 
-  useEffect(() => {
-    if (assets.length > 0) onFinishLoad();
-  }, [assets, onFinishLoad]);
+    preloadImages();
+  }, []);
 
-  // Debounce function for smooth progress update
   const debounce = (func: Function, delay: number) => {
     let timer: ReturnType<typeof setTimeout>;
     return (...args: any[]) => {
@@ -67,19 +83,16 @@ export const Component_Container_Scroll = ({
   }, 50);
 
   const handleScroll = useCallback(() => {
-    if (containerRef.current && data.json.content.text) {
+    if (containerRef.current) {
       const scrollPosition = containerRef.current.scrollTop;
       const scrollHeight =
         containerRef.current.scrollHeight - containerRef.current.clientHeight;
       const progress = (scrollPosition / scrollHeight) * 100;
       updateScrollProgress(progress);
 
-      const blurbInterval = 100 / data.json.content.text.length;
+      const blurbInterval = 100 / text.length;
       const newBlurbIndex = Math.floor(progress / blurbInterval);
-      if (
-        newBlurbIndex !== currentBlurbIndex &&
-        newBlurbIndex < data.json.content.text.length
-      ) {
+      if (newBlurbIndex !== currentBlurbIndex && newBlurbIndex < text.length) {
         setCurrentBlurbIndex(newBlurbIndex);
       }
 
@@ -129,28 +142,6 @@ export const Component_Container_Scroll = ({
     };
   }, [handleScroll]);
 
-  // Custom wheel event to conditionally prevent scroll propagation
-  const handleWheel = (event: WheelEvent) => {
-    if (containerRef.current) {
-      if (isAtTop && containerRef.current.scrollTop > 0) {
-        event.preventDefault(); // Prevent the default scroll behavior when at the top
-        containerRef.current.scrollTop += event.deltaY;
-        handleScroll();
-      }
-    }
-  };
-
-  useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.addEventListener("wheel", handleWheel, {
-        passive: false,
-      });
-    }
-    return () => {
-      containerRef.current?.removeEventListener("wheel", handleWheel);
-    };
-  }, [handleWheel, isAtTop]); // Re-run when isAtTop changes
-
   const rotations = useMemo(
     () => assets.map(() => (Math.random() - 0.5) * 20),
     [assets.length]
@@ -161,12 +152,12 @@ export const Component_Container_Scroll = ({
     [assets.length]
   );
 
-  return assets.length > 0 && data.json.content.text ? (
-    <div
-      data-component="Component_Container_Scroll"
-      data-css={data.json.content.key_css}
-      data-key={data.key_call}
-    >
+  if (!imagesLoaded) {
+    return <div className="loading-screen">Loading images...</div>;
+  }
+
+  return (
+    <div data-component="Component_Section_Scroll">
       <div className="animation-container">
         {assets.map((asset, index) => {
           const positionClass =
@@ -201,25 +192,17 @@ export const Component_Container_Scroll = ({
             </div>
           );
         })}
-        <h1 className={`blurb-text`}>
-          {data.json.content.text[currentBlurbIndex]}
-        </h1>
+        <h1 className={`blurb-text`}>{text[currentBlurbIndex]}</h1>
       </div>
       <div className="progress-bar-container">
         <div className="progress-bar" style={{ width: `${scrollProgress}%` }} />
       </div>
-      <div
-        className="container-scroll"
-        ref={containerRef}
-        style={{
-          overflowY: isAtTop ? "auto" : "hidden",
-        }}
-      >
+      <div className="section-scroll" ref={containerRef}>
         <div
           className="scroller"
           style={{ height: `${assets.length * 250}px` }}
         ></div>
       </div>
     </div>
-  ) : null;
+  );
 };

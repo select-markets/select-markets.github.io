@@ -1,4 +1,4 @@
-[data-component="Component_Container_Scroll"] {
+[data-component="Component_Section_Scroll"] {
   position: relative;
   height: 100vh;
   width: 100vw;
@@ -6,9 +6,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex: 0 0 auto;
+  min-height: 100vh;
 }
 
-.container-scroll {
+.section-scroll {
   height: 100vh;
   width: 100vw;
   overflow: hidden;

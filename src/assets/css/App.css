@@ -36,15 +36,3 @@ button:hover {
 ::-webkit-scrollbar-thumb {
   border-radius: 6px;
 }
-
-@keyframes shimmer {
-  0% {
-    background-position: 0% 50%; /* Start at the left */
-  }
-  50% {
-    background-position: 100% 50%; /* Move the gradient to the right */
-  }
-  100% {
-    background-position: 0% 50%; /* Move it back to the left */
-  }
-}

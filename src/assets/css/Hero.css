@@ -11,4 +11,6 @@
   align-items: center;
   padding-top: 20vh;
   background-image: url("/assets/images/select-3.jpg");
+  flex: 0 0 auto;
+  min-height: 100vh;
 }
