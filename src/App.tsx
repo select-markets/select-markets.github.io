@@ -1,9 +1,8 @@
-import { Context_Brain } from "./context/Context_Brain";
+import { Component_App_Router } from "./components/Component_App_Router";
 import "./assets/css/App.css";
-import "./assets/css/Global.css";
 
 const App = () => {
-  return <Context_Brain />;
+  return <Component_App_Router />;
 };
 
 export default App;
