@@ -8,4 +8,5 @@
   overflow-x: hidden;
   background: black;
   background-color: white;
+  height: fit-content;
 }

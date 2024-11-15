@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
-import "../assets/css/Container_Scroll.css";
+import "../assets/css/Section_Scroll.css";
 
 const assets = [
   { url: "/assets/images/select-0.jpg" },
@@ -48,6 +48,7 @@ export const Component_Section_Scroll = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [currentBlurbIndex, setCurrentBlurbIndex] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [textVisible, setTextVisible] = useState(true);
 
   // Preload all images
   useEffect(() => {
@@ -90,12 +91,20 @@ export const Component_Section_Scroll = () => {
       const progress = (scrollPosition / scrollHeight) * 100;
       updateScrollProgress(progress);
 
-      const blurbInterval = 100 / text.length;
+      // Calculate which blurb to show based on scroll progress
+      const blurbInterval = 100 / text.length; // Divide scroll range equally
       const newBlurbIndex = Math.floor(progress / blurbInterval);
+
       if (newBlurbIndex !== currentBlurbIndex && newBlurbIndex < text.length) {
-        setCurrentBlurbIndex(newBlurbIndex);
+        setTextVisible(false); // Trigger pop-out animation
+
+        setTimeout(() => {
+          setCurrentBlurbIndex(newBlurbIndex); // Update the blurb index
+          setTextVisible(true); // Trigger pop-in animation
+        }, 500); // Match pop-out animation duration
       }
 
+      // Update visible assets for animations
       const newVisibleAssets = new Set<number>();
       assets.forEach((_, index) => {
         if (
@@ -113,7 +122,13 @@ export const Component_Section_Scroll = () => {
         setVisibleAssets(newVisibleAssets);
       }
     }
-  }, [assets, visibleAssets, currentBlurbIndex, updateScrollProgress]);
+  }, [
+    assets,
+    visibleAssets,
+    currentBlurbIndex,
+    updateScrollProgress,
+    text.length,
+  ]);
 
   useEffect(() => {
     if (!isAtTop) setVisibleAssets(new Set());
@@ -192,7 +207,13 @@ export const Component_Section_Scroll = () => {
             </div>
           );
         })}
-        <h1 className={`blurb-text`}>{text[currentBlurbIndex]}</h1>
+        <h1
+          className={`blurb-text ${
+            textVisible ? "text-pop-in" : "text-pop-out"
+          }`}
+        >
+          {text[currentBlurbIndex]}
+        </h1>
       </div>
       <div className="progress-bar-container">
         <div className="progress-bar" style={{ width: `${scrollProgress}%` }} />

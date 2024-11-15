@@ -1,0 +1,166 @@
+[data-component="Component_Section_Scroll"] {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto;
+  min-height: 100vh;
+}
+
+.section-scroll {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  overflow-y: auto;
+}
+
+.animation-container {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.animation-container h1 {
+  width: 100%;
+  text-align: center;
+}
+
+.image-container {
+  position: absolute;
+  width: auto;
+  padding: 10px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease-in-out;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 1px 3px rgba(0, 0, 0, 0.08),
+    0 10px 20px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 2px;
+}
+
+/* Positioning for four corners */
+.bottom-left {
+  left: 10%;
+  bottom: 15%;
+}
+.top-left {
+  left: 10%;
+  top: 15%;
+}
+.bottom-right {
+  right: 10%;
+  bottom: 15%;
+}
+.top-right {
+  right: 10%;
+  top: 15%;
+}
+
+.pop-in {
+  animation: popIn 0.5s forwards;
+}
+
+.pop-out {
+  animation: popOut 0.5s forwards;
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes popOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+.scroller {
+  width: 100vw;
+}
+
+.progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #e61171;
+  transition: width 0.2s ease;
+}
+
+.text-pop-in {
+  animation: textPopIn 0.5s forwards;
+}
+
+.text-pop-out {
+  animation: textPopOut 0.5s forwards;
+}
+
+@keyframes textPopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textPopOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
