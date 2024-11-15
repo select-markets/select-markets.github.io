@@ -10,7 +10,7 @@ export const Component_Indicator_Scroll = ({
   return (
     <div
       data-component="Component_Indicator_Scroll"
-      className={`${visible} pop-in : pop-out`}
+      className={visible ? "pop-in" : "pop-out"}
     >
       Scroll
       <svg
