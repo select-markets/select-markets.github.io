@@ -226,7 +226,11 @@ export const Component_Section_Scroll = () => {
       <div className="progress-bar-container">
         <div className="progress-bar" style={{ width: `${scrollProgress}%` }} />
       </div>
-      <div className="section-scroll" ref={containerRef}>
+      <div
+        className="section-scroll"
+        ref={containerRef}
+        style={{ overflowY: isAtTop ? "auto" : "hidden" }}
+      >
         <div
           className="scroller"
           style={{ height: `${assets.length * 250}px` }}
