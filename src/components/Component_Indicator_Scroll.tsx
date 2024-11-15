@@ -1,8 +1,17 @@
 import "../assets/css/Indicator_Scroll.css";
 
-export const Component_Indicator_Scroll = ({}) => {
+interface Props_Component_Indicator_Scroll {
+  visible: boolean;
+}
+
+export const Component_Indicator_Scroll = ({
+  visible,
+}: Props_Component_Indicator_Scroll) => {
   return (
-    <div data-component="Component_Indicator_Scroll">
+    <div
+      data-component="Component_Indicator_Scroll"
+      className={`${visible} pop-in : pop-out`}
+    >
       Scroll
       <svg
         className="down-arrow"

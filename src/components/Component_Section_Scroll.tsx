@@ -45,6 +45,7 @@ const text = [
 export const Component_Section_Scroll = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isAtTop, setIsAtTop] = useState(false);
+  const [isAtBottom, setIsAtBottom] = useState(false); // New state
   const [visibleAssets, setVisibleAssets] = useState<Set<number>>(new Set());
   const [scrollProgress, setScrollProgress] = useState(0);
   const [currentBlurbIndex, setCurrentBlurbIndex] = useState(0);
@@ -87,7 +88,6 @@ export const Component_Section_Scroll = () => {
   const handleScroll = useCallback(() => {
     if (containerRef.current) {
       if (!isAtTop) {
-        // Prevent scrolling when isAtTop is false
         containerRef.current.scrollTop = 0;
         return;
       }
@@ -95,23 +95,28 @@ export const Component_Section_Scroll = () => {
       const scrollPosition = containerRef.current.scrollTop;
       const scrollHeight =
         containerRef.current.scrollHeight - containerRef.current.clientHeight;
+
+      // Update progress
       const progress = (scrollPosition / scrollHeight) * 100;
       updateScrollProgress(progress);
 
-      // Calculate which blurb to show based on scroll progress
-      const blurbInterval = 100 / text.length; // Divide scroll range equally
+      // Check if at the bottom
+      const atBottom = scrollPosition >= scrollHeight - 1;
+      setIsAtBottom(atBottom); // Update the state
+
+      // Calculate which blurb to show
+      const blurbInterval = 100 / text.length;
       const newBlurbIndex = Math.floor(progress / blurbInterval);
 
       if (newBlurbIndex !== currentBlurbIndex && newBlurbIndex < text.length) {
-        setTextVisible(false); // Trigger pop-out animation
-
+        setTextVisible(false);
         setTimeout(() => {
-          setCurrentBlurbIndex(newBlurbIndex); // Update the blurb index
-          setTextVisible(true); // Trigger pop-in animation
-        }, 500); // Match pop-out animation duration
+          setCurrentBlurbIndex(newBlurbIndex);
+          setTextVisible(true);
+        }, 500);
       }
 
-      // Update visible assets for animations
+      // Update visible assets
       const newVisibleAssets = new Set<number>();
       assets.forEach((_, index) => {
         if (
@@ -130,12 +135,11 @@ export const Component_Section_Scroll = () => {
       }
     }
   }, [
-    assets,
+    isAtTop,
     visibleAssets,
     currentBlurbIndex,
     updateScrollProgress,
     text.length,
-    isAtTop,
   ]);
 
   useEffect(() => {
@@ -241,7 +245,7 @@ export const Component_Section_Scroll = () => {
           ></div>
         </div>
       </div>
-      <Component_Indicator_Scroll />
+      <Component_Indicator_Scroll visible={!isAtBottom} />
     </>
   );
 };

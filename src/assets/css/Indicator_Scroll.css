@@ -13,8 +13,15 @@
   z-index: 20;
   left: 50%; /* Set element's left boundary at 50% of the viewport width */
   margin-left: -50px; /* Negative half the width to offset the element */
-  animation: popIn 1s ease-out forwards;
   overflow: hidden; /* Prevents child overflows during animation */
+}
+
+.pop-in {
+  animation: popIn 0.5s forwards;
+}
+
+.pop-out {
+  animation: popOut 0.5s forwards;
 }
 
 @keyframes popIn {
