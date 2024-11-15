@@ -14,8 +14,8 @@ export const Component_Text_Animated = ({
   return text.split("").map((char, index) => {
     let transform = "";
 
-    if (hovered) {
-      // Check if the text length is even or odd
+    if (hovered && char.trim() !== "") {
+      // Only animate non-space characters
       const isEven = length % 2 === 0;
       const middle = isEven ? length / 2 - 0.5 : Math.floor(length / 2);
       const a = invert ? -0.05 : 0.05;
@@ -57,9 +57,11 @@ export const Component_Text_Animated = ({
         data-component="Component_Text_Animated"
         style={{
           transform,
+          display: char.trim() === "" ? "inline-block" : undefined, // Maintain spacing for spaces
+          visibility: char.trim() === "" ? "hidden" : undefined, // Hide spaces but maintain alignment
         }}
       >
-        {char}
+        {char === " " ? "\u00A0" : char} {/* Render spaces as non-breaking */}
       </h1>
     );
   });

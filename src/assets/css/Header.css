@@ -4,7 +4,7 @@
   flex-direction: row;
   position: fixed;
   justify-content: space-between;
-  padding: 5vh 10vw 1vh 10vw;
+  padding: 5vh 2vw 1vh 2vw;
   height: 20vh;
   align-items: center;
   z-index: 2;

@@ -15,6 +15,7 @@ import Page_FAQ from "../pages/Page_FAQ";
 import Page_Red_Eye from "../pages/Page_Red_Eye";
 import Page_Vendor from "../pages/Page_Vendor";
 import Page_Landing from "../pages/Page_Landing";
+import Page_Contact from "../pages/Page_Red_Eye copy";
 
 // JSON map for route configuration
 const routeConfig = [
@@ -24,6 +25,7 @@ const routeConfig = [
   { path: "/faq", component: Page_FAQ },
   { path: "/red_eye", component: Page_Red_Eye },
   { path: "/vendor", component: Page_Vendor },
+  { path: "/contact", component: Page_Contact },
 ];
 
 // Custom hook to normalize paths for case-insensitive routing

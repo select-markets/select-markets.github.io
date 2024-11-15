@@ -14,23 +14,34 @@ const buttons: Payload_Button[] = [
   {
     url: "/vendor",
     text: "Vendor",
-    subtext: "Explore vendor options",
+    subtext: "Vend for us",
     animated: true,
   },
-
-  { url: "/about", text: "About", subtext: "Learn more", animated: true },
-
-  { url: "/", text: "Select", subtext: "", animated: false },
+  {
+    url: "/articles",
+    text: "Articles",
+    subtext: "Read about us",
+    animated: true,
+  },
   {
     url: "/faq",
     text: "FAQ",
     subtext: "Frequently asked questions",
     animated: true,
   },
+  { url: "/", text: "Select", subtext: "", animated: false },
+
+  { url: "/about", text: "About", subtext: "Who we are", animated: true },
   {
-    url: "/articles",
-    text: "Articles",
-    subtext: "Read our articles",
+    url: "/contact",
+    text: "Contact",
+    subtext: "Talk to us",
+    animated: true,
+  },
+  {
+    url: "/red_eye",
+    text: "Red Eye",
+    subtext: "???",
     animated: true,
   },
 ];
