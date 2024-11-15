@@ -6,8 +6,9 @@ import "../assets/css/Page.css";
 const Page_Landing = () => {
   return (
     <div className="page">
-      <Component_Header /> <Component_Section_Scroll />
+      <Component_Header />
       <Component_Hero />
+      <Component_Section_Scroll />
     </div>
   );
 };

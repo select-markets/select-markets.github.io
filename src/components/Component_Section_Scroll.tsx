@@ -85,6 +85,12 @@ export const Component_Section_Scroll = () => {
 
   const handleScroll = useCallback(() => {
     if (containerRef.current) {
+      if (!isAtTop) {
+        // Prevent scrolling when isAtTop is false
+        containerRef.current.scrollTop = 0;
+        return;
+      }
+
       const scrollPosition = containerRef.current.scrollTop;
       const scrollHeight =
         containerRef.current.scrollHeight - containerRef.current.clientHeight;
@@ -128,9 +134,11 @@ export const Component_Section_Scroll = () => {
     currentBlurbIndex,
     updateScrollProgress,
     text.length,
+    isAtTop,
   ]);
 
   useEffect(() => {
+    console.log(isAtTop);
     if (!isAtTop) setVisibleAssets(new Set());
   }, [isAtTop]);
 

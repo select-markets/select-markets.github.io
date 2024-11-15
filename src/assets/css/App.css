@@ -11,13 +11,21 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Blowbrush";
+  src: url("/src/assets/fonts/blowbrush.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body,
 #root {
   height: 100vh;
   width: 100vw;
   padding: 0;
   margin: 0;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 button:hover {

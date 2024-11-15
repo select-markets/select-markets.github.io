@@ -42,8 +42,8 @@
 [data-component="Component_Button_Animated"] .title_container .title_up h1,
 [data-component="Component_Button_Animated"] .title_container .title_down h1 {
   height: 100%;
+  font-family: "Blowbrush", sans-serif;
   width: fit-content;
-  font-family: "Madloud", sans-serif;
   font-size: calc(2vw + 2vh);
   font-weight: 900;
   margin: 0 calc(- (0.5vw + 0.5vh));
@@ -65,6 +65,7 @@
 [data-component="Component_Button_Animated"]
   .title_container:not(.animated)
   h1 {
+  font-family: "Madloud", sans-serif;
   font-size: calc(4.5vw + 4.5vh);
 }
 
