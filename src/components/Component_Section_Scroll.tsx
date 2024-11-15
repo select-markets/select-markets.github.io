@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
+import { Component_Indicator_Scroll } from "./Component_Indicator_Scroll";
 import "../assets/css/Section_Scroll.css";
 
 const assets = [
@@ -179,62 +180,68 @@ export const Component_Section_Scroll = () => {
   }
 
   return (
-    <div data-component="Component_Section_Scroll">
-      <div className="animation-container">
-        {assets.map((asset, index) => {
-          const positionClass =
-            index % 4 === 0
-              ? "bottom-left"
-              : index % 4 === 1
-              ? "top-left"
-              : index % 4 === 2
-              ? "bottom-right"
-              : "top-right";
+    <>
+      <div data-component="Component_Section_Scroll">
+        <div className="animation-container">
+          {assets.map((asset, index) => {
+            const positionClass =
+              index % 4 === 0
+                ? "bottom-left"
+                : index % 4 === 1
+                ? "top-left"
+                : index % 4 === 2
+                ? "bottom-right"
+                : "top-right";
 
-          return (
-            <div
-              key={index}
-              className={`image-container ${positionClass} ${
-                visibleAssets.has(index) ? "pop-in" : "pop-out"
-              }`}
-              style={{
-                height: `calc(27.5vh + ${heights[index]}px)`,
-                opacity: visibleAssets.has(index) ? 1 : 0,
-              }}
-            >
-              <img
-                src={asset.url}
+            return (
+              <div
+                key={index}
+                className={`image-container ${positionClass} ${
+                  visibleAssets.has(index) ? "pop-in" : "pop-out"
+                }`}
                 style={{
-                  transform: `rotate(${rotations[index]}deg) scale(${
-                    visibleAssets.has(index) ? 1 : 0.5
-                  })`,
+                  height: `calc(27.5vh + ${heights[index]}px)`,
+                  opacity: visibleAssets.has(index) ? 1 : 0,
                 }}
-                alt={`Asset ${index}`}
-              />
-            </div>
-          );
-        })}
-        <h1
-          className={`blurb-text ${
-            textVisible ? "text-pop-in" : "text-pop-out"
-          }`}
-        >
-          {text[currentBlurbIndex]}
-        </h1>
-      </div>
-      <div className="progress-bar-container">
-        <div className="progress-bar" style={{ width: `${scrollProgress}%` }} />
-      </div>
-      <div
-        className="section-scroll"
-        ref={containerRef}
-        style={{ overflowY: isAtTop ? "auto" : "hidden" }}
-      >
+              >
+                <img
+                  src={asset.url}
+                  style={{
+                    transform: `rotate(${rotations[index]}deg) scale(${
+                      visibleAssets.has(index) ? 1 : 0.5
+                    })`,
+                  }}
+                  alt={`Asset ${index}`}
+                />
+              </div>
+            );
+          })}
+          <h1
+            className={`blurb-text ${
+              textVisible ? "text-pop-in" : "text-pop-out"
+            }`}
+          >
+            {text[currentBlurbIndex]}
+          </h1>
+        </div>
+        <div className="progress-bar-container">
+          <div
+            className="progress-bar"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
         <div
-          className="scroller"
-          style={{ height: `${assets.length * 250}px` }}
-        ></div>
+          className="section-scroll"
+          ref={containerRef}
+          style={{ overflowY: isAtTop ? "auto" : "hidden" }}
+        >
+          <div
+            className="scroller"
+            style={{ height: `${assets.length * 250}px` }}
+          ></div>
+        </div>
       </div>
-    </div>
+      <Component_Indicator_Scroll />
+    </>
   );
 };

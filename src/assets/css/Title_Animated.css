@@ -3,13 +3,13 @@
   width: 100%;
   justify-content: center;
   align-items: center;
-  height: 400px;
+  height: 65%;
   overflow: hidden;
 }
 
 [data-component="Component_Title_Animated"] .animated_text {
   display: inline-block;
-  font-size: calc(10vw + 10vh);
+  font-size: calc(16vw + 16vh);
   font-weight: bolder;
   letter-spacing: -0.6rem;
 }
@@ -21,6 +21,7 @@
 
 [data-component="Component_Title_Animated"] .letter,
 [data-component="Component_Title_Animated"] .colored-copy {
+  font-family: "Blowbrush", sans-serif;
   display: inline-block;
   opacity: 0;
   transform: translateY(100%);

@@ -14,3 +14,29 @@
   flex: 0 0 auto;
   min-height: 100vh;
 }
+
+[data-component="Component_Hero"] .blurb {
+  color: white;
+  margin: 0;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 1);
+  animation: popIn 1s ease-out forwards;
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
