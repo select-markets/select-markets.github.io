@@ -4,19 +4,19 @@
   flex-direction: row;
   position: fixed;
   justify-content: space-between;
-  padding: 5vh 10vw;
+  padding: 5vh 10vw 1vh 10vw;
   height: 20vh;
   align-items: center;
   z-index: 2;
 }
 
 [data-component="Component_Header"]
-  [data-component="Component_Button_Logo"][data-css="button_logo"] {
+  [data-component="Component_Button_Animated"] {
   width: 20%;
-  min-width: 370px;
 }
 
-[data-component="Component_Header"] [data-component="Component_Button_Logo"] {
+[data-component="Component_Header"]
+  [data-component="Component_Button_Animated"] {
   opacity: 0;
   transform: scale(0);
   animation: popIn 1s ease-out forwards;

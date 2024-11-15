@@ -1,0 +1,117 @@
+[data-component="Component_Button_Animated"] {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  cursor: pointer;
+  height: 100%;
+  width: 20%;
+}
+
+[data-component="Component_Button_Animated"] {
+  user-select: none;
+}
+
+[data-component="Component_Button_Animated"] .title_container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-component="Component_Button_Animated"] .title_container * {
+  pointer-events: none;
+}
+
+[data-component="Component_Button_Animated"] .title_container .title_up,
+[data-component="Component_Button_Animated"] .title_container .title_down {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s all ease;
+  mix-blend-mode: multiply;
+  text-align: center;
+}
+
+[data-component="Component_Button_Animated"] .title_container .title_up h1,
+[data-component="Component_Button_Animated"] .title_container .title_down h1 {
+  height: 100%;
+  width: fit-content;
+  font-family: "Madloud", sans-serif;
+  font-size: calc(2vw + 2vh);
+  font-weight: 900;
+  margin: 0 calc(- (0.5vw + 0.5vh));
+  transition: 0.3s all ease;
+
+  background: linear-gradient(45deg, #3ebeff, #ff3e9e, #9c54f5);
+  background-size: 200% 200%;
+
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shimmer 10s infinite ease-in-out;
+
+  will-change: transform;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+[data-component="Component_Button_Animated"]
+  .title_container:not(.animated)
+  h1 {
+  font-size: calc(4.5vw + 4.5vh);
+}
+
+[data-component="Component_Button_Animated"]
+  .title_container
+  .title_up.hovered
+  h1,
+[data-component="Component_Button_Animated"]
+  .title_container
+  .title_down.hovered
+  h1 {
+  margin: 0 calc(0.1vw + 0.1vh);
+  pointer-events: none;
+  font-size: calc(2vw + 2vh);
+}
+
+[data-component="Component_Button_Animated"]
+  .title_container
+  .title_up.hovered {
+  transform: translateY(-6.5vh);
+}
+
+[data-component="Component_Button_Animated"]
+  .title_container
+  .title_down.hovered {
+  transform: translateY(7vh);
+}
+
+[data-component="Component_Button_Animated"] .subtext p {
+  opacity: 0;
+  transition: 0.3s all ease;
+  font-size: calc(0.7vw + 0.7vh);
+  letter-spacing: calc(- (0.2vw + 0.2vh));
+  color: #969897;
+  margin: 0;
+  text-align: center;
+}
+
+[data-component="Component_Button_Animated"].hovered .subtext p {
+  opacity: 1;
+}
+
+[data-component="Component_Button_Animated"] .subtext {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  margin-top: -1vh;
+}

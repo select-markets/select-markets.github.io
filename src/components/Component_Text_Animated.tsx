@@ -1,94 +1,66 @@
-import { useEffect, useState } from "react";
-import jsonEqual from "../helper/jsonEqual";
-import "../assets/css/Text_Animated.css";
+interface Props_Component_Text_Animated {
+  text: string;
+  hovered: boolean;
+  invert?: boolean;
+}
 
 export const Component_Text_Animated = ({
-  data,
-  results,
-  onFinishLoad,
-}: Props_Component_Rendered) => {
-  const [lastResults, setLastResults] = useState<any>();
+  text,
+  hovered,
+  invert = false,
+}: Props_Component_Text_Animated) => {
+  const length = text.length;
 
-  const parseAPIResults = (result_api: Payload_Result) => {
-    // Handle the API result logic based on key_api
-    switch (result_api.data.key_api) {
-      default:
-        break;
+  return text.split("").map((char, index) => {
+    let transform = "";
+
+    if (hovered) {
+      // Check if the text length is even or odd
+      const isEven = length % 2 === 0;
+      const middle = isEven ? length / 2 - 0.5 : Math.floor(length / 2);
+      const a = invert ? -0.05 : 0.05;
+
+      // Calculate the distance from the middle
+      const distanceFromMiddle = Math.abs(index - middle);
+
+      // Scale the multiplier inversely proportional to the distance from the middle
+      const scalingFactor = 1 / (distanceFromMiddle + 1); // +1 to avoid division by zero
+
+      // Translation now scales more as it gets closer to the middle
+      const translateY = a * Math.pow(index - middle, 2) * 20 * scalingFactor;
+
+      const rotate =
+        index < middle
+          ? invert
+            ? 5 * (middle - index)
+            : -5 * (middle - index)
+          : invert
+          ? -5 * (index - middle)
+          : 5 * (index - middle);
+
+      if (translateY !== 0 || rotate !== 0) {
+        transform = `translateY(${translateY}vh) rotate(${rotate}deg)`;
+      }
+
+      // Ensure the two middle characters have the same transform
+      if (
+        isEven &&
+        (index === Math.floor(middle) || index === Math.ceil(middle))
+      ) {
+        transform = `translateY(${translateY}vh) rotate(${invert ? -5 : 5}deg)`;
+      }
     }
-  };
 
-  const parseResults = () => {
-    const result_api: Payload_Result =
-      data.handler_function.extractDataFromResult(
-        "api_answer",
-        results,
-        data.key_call
-      );
-
-    if (result_api) {
-      parseAPIResults(result_api);
-    }
-    setLastResults(results);
-  };
-
-  useEffect(() => {
-    if (!jsonEqual(results, lastResults)) {
-      parseResults();
-    }
-  }, [results, lastResults]);
-
-  useEffect(() => {
-    onFinishLoad();
-  }, [data.json.content.text, onFinishLoad]);
-
-  useEffect(() => {
-    const letters = document.querySelectorAll(
-      '[data-component="Component_Text_Animated"] .letter, [data-component="Component_Text_Animated"] .colored-copy'
-    );
-    letters.forEach((letter, index) => {
-      const delay = (index + 1) * 50;
-      setTimeout(() => {
-        letter.classList.add("appear");
-      }, delay);
-    });
-  }, [data.json.content.text]);
-
-  const colors = ["white", "#3ebeff", "#e61171"];
-
-  if (data.json.content.text)
     return (
-      <div
+      <h1
+        key={index}
         data-component="Component_Text_Animated"
-        data-css={data.json.content.key_css}
-        data-key={data.key_call}
+        style={{
+          transform,
+        }}
       >
-        <div className="animated_text">
-          {data.json.content.text[0].split("").map((letter, index) => (
-            <span key={index} className="letter-container">
-              <span
-                className="letter"
-                style={{
-                  transitionDelay: `${index * 0.1}s`,
-                  color: colors[0],
-                }}
-              >
-                {letter}
-              </span>
-              {colors.slice(1).map((color, colorIndex) => (
-                <span
-                  key={`${index}-${colorIndex}`}
-                  className="colored-copy"
-                  style={{
-                    transitionDelay: `${index * 0.1 + 0.1 * (colorIndex + 1)}s`,
-                    color: color,
-                  }}
-                >
-                  {letter}
-                </span>
-              ))}
-            </span>
-          ))}
-        </div>
-      </div>
+        {char}
+      </h1>
     );
+  });
 };

@@ -1,7 +1,13 @@
-import React from "react";
+import { Component_Header } from "../components/Component_Header";
+import "../assets/css/Page.css";
 
 const Page_Articles = () => {
-  return <div>Page_Articles</div>;
+  return (
+    <div className="page">
+      <Component_Header />
+      Page_Articles
+    </div>
+  );
 };
 
 export default Page_Articles;

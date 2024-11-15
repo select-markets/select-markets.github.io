@@ -1,40 +1,64 @@
-import { useEffect, useState } from "react";
-import Component_Generic from "./Component_Generic";
-import jsonEqual from "../helper/jsonEqual";
+import { useState, useEffect } from "react";
+import { Component_Button_Animated } from "./Component_Button_Animated";
+import { Component_Hamburger_Menu } from "./Component_Hamburger_Menu";
 import "../assets/css/Header.css";
 
-export const Component_Header = ({
-  data,
-  results,
-  onFinishLoad,
-}: Props_Component_Rendered) => {
-  const [lastResults, setLastResults] = useState<any>();
+export type Payload_Button = {
+  url: string;
+  text: string;
+  subtext: string;
+  animated: boolean;
+};
 
-  const parseResults = () => {
-    setLastResults(results);
-  };
+const buttons: Payload_Button[] = [
+  {
+    url: "/vendor",
+    text: "Vendor",
+    subtext: "Explore vendor options",
+    animated: true,
+  },
+
+  { url: "/about", text: "About", subtext: "Learn more", animated: true },
+
+  { url: "/", text: "Select", subtext: "", animated: false },
+  {
+    url: "/faq",
+    text: "FAQ",
+    subtext: "Frequently asked questions",
+    animated: true,
+  },
+  {
+    url: "/articles",
+    text: "Articles",
+    subtext: "Read our articles",
+    animated: true,
+  },
+];
+
+export const Component_Header = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 800);
 
   useEffect(() => {
-    if (!jsonEqual(results, lastResults)) parseResults();
-  }, [results]);
-
-  useEffect(() => {
-    onFinishLoad();
+    const handleResize = () => setIsMobile(window.innerWidth < 800);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
-    <div
-      data-component="Component_Header"
-      data-css={data.json.content.key_css}
-      onClick={() => data.handleLifecycle}
-      data-key={data.key_call}
-    >
-      {data.json.content.children &&
-        data.json.content.children.map(
-          (component_data: Data_Component_Generic, index: number) => (
-            <Component_Generic data={component_data} key={index} />
-          )
-        )}
+    <div data-component="Component_Header">
+      {isMobile ? (
+        <Component_Hamburger_Menu buttons={buttons} />
+      ) : (
+        buttons.map(({ url, text, subtext, animated }) => (
+          <Component_Button_Animated
+            key={url}
+            url={url}
+            text={text}
+            subtext={subtext}
+            animated={animated}
+          />
+        ))
+      )}
     </div>
   );
 };

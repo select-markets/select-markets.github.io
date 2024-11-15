@@ -1,0 +1,48 @@
+.hamburger-menu-container {
+  position: relative;
+}
+
+.hamburger-button {
+  background: none;
+  border: none;
+  font-size: calc(3vw + 3vh);
+  cursor: pointer;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  color: white;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.8));
+}
+
+.hamburger-menu {
+  position: fixed;
+  top: 0;
+  left: -200px; /* Initially hidden off-screen */
+  width: 200px;
+  height: 100%;
+  background: #333;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  padding-top: calc(3vw + 3vh + 40px);
+  z-index: 999;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: left 0.3s ease; /* Smooth slide-in effect */
+}
+
+.hamburger-menu.open {
+  left: 0; /* Slide into view */
+}
+
+.hamburger-menu-link {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-bottom: 1px solid #444;
+}
+
+.hamburger-menu-link:hover {
+  background: #444;
+}
